@@ -5,6 +5,10 @@
     <groupId>com.likeghost</groupId>
     <artifactId>mall</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+<!--    <properties>-->
+<!--        <maven.compiler.source>13</maven.compiler.source>-->
+<!--        <maven.compiler.target>13</maven.compiler.target>-->
+<!--    </properties>-->
     <name>mall</name>
     <description>聚合服务</description>
     <packaging>pom</packaging>
@@ -14,6 +18,10 @@
         <module>mall-order</module>
         <module>mall-product</module>
         <module>mall-ware</module>
+        <module>renren-fast</module>
+        <module>renren-generator</module>
+        <module>mall-common</module>
+        <module>mall-gateway</module>
     </modules>
 
 
