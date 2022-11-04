@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 
@@ -79,6 +80,18 @@ public class CategoryController {
 		categoryService.removeByIds(Arrays.asList(catIds));
 
         return R.ok();
+    }
+
+    /**
+     * 获取所有的标签组织而成的树形结构
+     */
+    @GetMapping("/list/tree")
+    //@RequiresPermissions("product:category:list")
+    public R listTree(){
+//        PageUtils page = categoryService.queryPage(params);
+        List<CategoryEntity>list= categoryService.listTree();
+
+        return R.ok().put("data", list);
     }
 
 }
