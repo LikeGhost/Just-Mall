@@ -30,8 +30,7 @@
 		<mssql.version>4.0</mssql.version>
 		<oracle.version>11.2.0.3</oracle.version>
 		<mongo.version>3.11.0</mongo.version>
-		<maven.compiler.source>8</maven.compiler.source>
-		<maven.compiler.target>8</maven.compiler.target>
+
 	</properties>
 
 	<dependencies>
@@ -150,6 +149,14 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>2.2.6.RELEASE</version>
 
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>8</source>
+					<target>8</target>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
