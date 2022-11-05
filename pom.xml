@@ -5,10 +5,10 @@
     <groupId>com.likeghost</groupId>
     <artifactId>mall</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-<!--    <properties>-->
-<!--        <maven.compiler.source>13</maven.compiler.source>-->
-<!--        <maven.compiler.target>13</maven.compiler.target>-->
-<!--    </properties>-->
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
     <name>mall</name>
     <description>聚合服务</description>
     <packaging>pom</packaging>

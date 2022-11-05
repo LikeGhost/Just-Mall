@@ -10,8 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>mall-common</artifactId>
-    <description>项目公共依赖</description><build><plugins><plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><configuration><source>8</source><target>8</target></configuration></plugin></plugins></build>
-
+    <description>项目公共依赖</description>
     <!--    <properties>-->
     <!--        <maven.compiler.source>13</maven.compiler.source>-->
     <!--        <maven.compiler.target>13</maven.compiler.target>-->
@@ -70,7 +69,6 @@
         </dependency>
 
     </dependencies>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -82,5 +80,17 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

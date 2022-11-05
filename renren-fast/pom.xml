@@ -52,6 +52,9 @@
 		<remote-addr>192.168.1.10:22</remote-addr>
 		<remote-username>root</remote-username>
 		<remote-passwd>123456</remote-passwd>
+
+		<maven.compiler.source>8</maven.compiler.source>
+		<maven.compiler.target>8</maven.compiler.target>
 	</properties>
 
 	<dependencies>
@@ -339,6 +342,14 @@
 					</resources>
 				</configuration>
 				<!-- 运行命令 mvn clean package docker:build 打包并生成docker镜像 -->
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>6</source>
+					<target>6</target>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
