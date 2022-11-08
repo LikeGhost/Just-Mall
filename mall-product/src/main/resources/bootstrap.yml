@@ -1,0 +1,10 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        namespace: 7bfb3675-36ad-4354-95ed-ab28856836e8
+      server-addr: localhost:8848
+  application:
+    name: mall-product
+
+
