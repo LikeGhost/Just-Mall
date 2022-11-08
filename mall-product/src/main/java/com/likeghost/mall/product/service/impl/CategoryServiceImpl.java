@@ -1,5 +1,6 @@
 package com.likeghost.mall.product.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -15,6 +16,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 
+/**
+ * @author likeghost
+ */
 @Service("categoryService")
 public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity> implements CategoryService {
 
@@ -22,7 +26,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<CategoryEntity> page = this.page(
                 new Query<CategoryEntity>().getPage(params),
-                new QueryWrapper<CategoryEntity>()
+                new QueryWrapper<>()
         );
 
         return new PageUtils(page);
@@ -48,6 +52,26 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         return listTree;
 
 
+    }
+
+    @Override
+    public int removeCategoryByIds(List<Long> catIds) {
+        int deleteCnt =-1;
+        for (Long catId : catIds) {
+
+            if(baseMapper.selectList(new LambdaQueryWrapper<CategoryEntity>()
+                    .eq(CategoryEntity::getParentCid,catId)).size()!=0){
+                deleteCnt=0;
+                break;
+            }
+        }
+        if(deleteCnt==0){
+            return deleteCnt;
+        }
+        else{
+            return baseMapper.deleteBatchIds(catIds) ;
+
+        }
     }
 
     private List<CategoryEntity> getChildren(CategoryEntity item, List<CategoryEntity> list) {
