@@ -57,7 +57,7 @@ public class CategoryController {
     public R save(@RequestBody CategoryEntity category){
 		categoryService.save(category);
 
-        return R.ok();
+        return R.ok("添加成功");
     }
 
     /**
@@ -68,13 +68,13 @@ public class CategoryController {
     public R update(@RequestBody CategoryEntity category){
 		categoryService.updateById(category);
 
-        return R.ok();
+        return R.ok("更新成功");
     }
 
     /**
      * 删除
      */
-    @RequestMapping("/delete")
+    @PostMapping("/delete")
     //@RequiresPermissions("product:category:delete")
     public R delete(@RequestBody Long[] catIds){
 //		categoryService.removeByIds(Arrays.asList(catIds));
@@ -97,6 +97,15 @@ public class CategoryController {
         List<CategoryEntity>list= categoryService.listTree();
 
         return R.ok().put("data", list);
+    }
+
+    @PostMapping("update/batch")
+    public R updateBatch(@RequestBody CategoryEntity[] categoryEntities){
+
+        boolean ret= categoryService.updateBatchById(Arrays.asList(categoryEntities));
+        return R.ok("更新成功");
+
+
     }
 
 }
