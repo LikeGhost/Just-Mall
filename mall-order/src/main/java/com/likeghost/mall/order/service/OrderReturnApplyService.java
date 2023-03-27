@@ -1,7 +1,7 @@
 package com.likeghost.mall.order.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.likeghost.common.utils.PageUtils;
+import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.mall.order.entity.OrderReturnApplyEntity;
 
 import java.util.Map;
@@ -15,6 +15,6 @@ import java.util.Map;
  */
 public interface OrderReturnApplyService extends IService<OrderReturnApplyEntity> {
 
-    PageUtils queryPage(Map<String, Object> params);
+    PageVo queryPage(Map<String, Object> params);
 }
 

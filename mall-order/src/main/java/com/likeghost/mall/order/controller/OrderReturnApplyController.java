@@ -1,6 +1,6 @@
 package com.likeghost.mall.order.controller;
 
-import com.likeghost.common.utils.PageUtils;
+import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.order.entity.OrderReturnApplyEntity;
 import com.likeghost.mall.order.service.OrderReturnApplyService;
@@ -31,7 +31,7 @@ public class OrderReturnApplyController {
     @RequestMapping("/list")
     //@RequiresPermissions("order:orderreturnapply:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = orderReturnApplyService.queryPage(params);
+        PageVo page = orderReturnApplyService.queryPage(params);
 
         return R.ok().put("page", page);
     }

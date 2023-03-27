@@ -1,6 +1,6 @@
 package com.likeghost.mall.product.controller;
 
-import com.likeghost.common.utils.PageUtils;
+import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.product.entity.SpuInfoEntity;
 import com.likeghost.mall.product.service.SpuInfoService;
@@ -31,7 +31,7 @@ public class SpuInfoController {
     @RequestMapping("/list")
     //@RequiresPermissions("product:spuinfo:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = spuInfoService.queryPage(params);
+        PageVo page = spuInfoService.queryPage(params);
 
         return R.ok().put("page", page);
     }

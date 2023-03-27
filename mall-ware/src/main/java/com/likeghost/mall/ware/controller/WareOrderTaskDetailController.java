@@ -1,6 +1,6 @@
 package com.likeghost.mall.ware.controller;
 
-import com.likeghost.common.utils.PageUtils;
+import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.ware.entity.WareOrderTaskDetailEntity;
 import com.likeghost.mall.ware.service.WareOrderTaskDetailService;
@@ -31,7 +31,7 @@ public class WareOrderTaskDetailController {
     @RequestMapping("/list")
     //@RequiresPermissions("ware:wareordertaskdetail:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = wareOrderTaskDetailService.queryPage(params);
+        PageVo page = wareOrderTaskDetailService.queryPage(params);
 
         return R.ok().put("page", page);
     }

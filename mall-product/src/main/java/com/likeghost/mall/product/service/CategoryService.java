@@ -1,7 +1,7 @@
 package com.likeghost.mall.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.likeghost.common.utils.PageUtils;
+import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.mall.product.entity.CategoryEntity;
 
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public interface CategoryService extends IService<CategoryEntity> {
 
-    PageUtils queryPage(Map<String, Object> params);
+    PageVo queryPage(Map<String, Object> params);
 
     List<CategoryEntity> listTree();
 

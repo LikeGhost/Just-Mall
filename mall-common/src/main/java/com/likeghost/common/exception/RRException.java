@@ -1,4 +1,4 @@
-package com.likeghost.common.utils;
+package com.likeghost.common.exception;
 
 /**
  * 自定义异常

@@ -1,6 +1,6 @@
 package com.likeghost.mall.coupon.controller;
 
-import com.likeghost.common.utils.PageUtils;
+import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.coupon.entity.SkuLadderEntity;
 import com.likeghost.mall.coupon.service.SkuLadderService;
@@ -31,7 +31,7 @@ public class SkuLadderController {
     @RequestMapping("/list")
     //@RequiresPermissions("coupon:skuladder:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = skuLadderService.queryPage(params);
+        PageVo page = skuLadderService.queryPage(params);
 
         return R.ok().put("page", page);
     }

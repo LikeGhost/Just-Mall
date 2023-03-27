@@ -1,6 +1,6 @@
 package com.likeghost.mall.member.controller;
 
-import com.likeghost.common.utils.PageUtils;
+import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.member.entity.MemberReceiveAddressEntity;
 import com.likeghost.mall.member.service.MemberReceiveAddressService;
@@ -31,7 +31,7 @@ public class MemberReceiveAddressController {
     @RequestMapping("/list")
     //@RequiresPermissions("member:memberreceiveaddress:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = memberReceiveAddressService.queryPage(params);
+        PageVo page = memberReceiveAddressService.queryPage(params);
 
         return R.ok().put("page", page);
     }

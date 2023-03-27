@@ -1,6 +1,6 @@
 package com.likeghost.mall.coupon.controller;
 
-import com.likeghost.common.utils.PageUtils;
+import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.coupon.entity.CouponSpuCategoryRelationEntity;
 import com.likeghost.mall.coupon.service.CouponSpuCategoryRelationService;
@@ -31,7 +31,7 @@ public class CouponSpuCategoryRelationController {
     @RequestMapping("/list")
     //@RequiresPermissions("coupon:couponspucategoryrelation:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = couponSpuCategoryRelationService.queryPage(params);
+        PageVo page = couponSpuCategoryRelationService.queryPage(params);
 
         return R.ok().put("page", page);
     }

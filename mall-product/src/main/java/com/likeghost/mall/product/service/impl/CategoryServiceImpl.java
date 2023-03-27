@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.likeghost.common.utils.PageUtils;
+import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.Query;
 import com.likeghost.mall.product.dao.CategoryDao;
 import com.likeghost.mall.product.entity.CategoryEntity;
@@ -23,13 +23,13 @@ import java.util.stream.Collectors;
 public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity> implements CategoryService {
 
     @Override
-    public PageUtils queryPage(Map<String, Object> params) {
+    public PageVo queryPage(Map<String, Object> params) {
         IPage<CategoryEntity> page = this.page(
                 new Query<CategoryEntity>().getPage(params),
                 new QueryWrapper<>()
         );
 
-        return new PageUtils(page);
+        return new PageVo(page);
     }
 
     /**

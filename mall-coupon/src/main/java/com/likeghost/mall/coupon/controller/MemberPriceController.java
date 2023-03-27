@@ -1,6 +1,6 @@
 package com.likeghost.mall.coupon.controller;
 
-import com.likeghost.common.utils.PageUtils;
+import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.coupon.entity.MemberPriceEntity;
 import com.likeghost.mall.coupon.service.MemberPriceService;
@@ -31,7 +31,7 @@ public class MemberPriceController {
     @RequestMapping("/list")
     //@RequiresPermissions("coupon:memberprice:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = memberPriceService.queryPage(params);
+        PageVo page = memberPriceService.queryPage(params);
 
         return R.ok().put("page", page);
     }

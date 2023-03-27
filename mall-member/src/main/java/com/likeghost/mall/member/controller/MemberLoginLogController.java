@@ -1,6 +1,6 @@
 package com.likeghost.mall.member.controller;
 
-import com.likeghost.common.utils.PageUtils;
+import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.member.entity.MemberLoginLogEntity;
 import com.likeghost.mall.member.service.MemberLoginLogService;
@@ -31,7 +31,7 @@ public class MemberLoginLogController {
     @RequestMapping("/list")
     //@RequiresPermissions("member:memberloginlog:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = memberLoginLogService.queryPage(params);
+        PageVo page = memberLoginLogService.queryPage(params);
 
         return R.ok().put("page", page);
     }

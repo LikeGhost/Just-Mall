@@ -1,29 +1,29 @@
 package com.likeghost.mall.member.service.impl;
 
-import org.springframework.stereotype.Service;
-import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.likeghost.common.utils.PageUtils;
+import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.Query;
-
 import com.likeghost.mall.member.dao.MemberCollectSubjectDao;
 import com.likeghost.mall.member.entity.MemberCollectSubjectEntity;
 import com.likeghost.mall.member.service.MemberCollectSubjectService;
+import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 
 @Service("memberCollectSubjectService")
 public class MemberCollectSubjectServiceImpl extends ServiceImpl<MemberCollectSubjectDao, MemberCollectSubjectEntity> implements MemberCollectSubjectService {
 
     @Override
-    public PageUtils queryPage(Map<String, Object> params) {
+    public PageVo queryPage(Map<String, Object> params) {
         IPage<MemberCollectSubjectEntity> page = this.page(
                 new Query<MemberCollectSubjectEntity>().getPage(params),
                 new QueryWrapper<MemberCollectSubjectEntity>()
         );
 
-        return new PageUtils(page);
+        return new PageVo(page);
     }
 
 }

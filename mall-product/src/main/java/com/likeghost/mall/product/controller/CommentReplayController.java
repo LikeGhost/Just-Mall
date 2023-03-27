@@ -1,6 +1,6 @@
 package com.likeghost.mall.product.controller;
 
-import com.likeghost.common.utils.PageUtils;
+import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.product.entity.CommentReplayEntity;
 import com.likeghost.mall.product.service.CommentReplayService;
@@ -31,7 +31,7 @@ public class CommentReplayController {
     @RequestMapping("/list")
     //@RequiresPermissions("product:commentreplay:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = commentReplayService.queryPage(params);
+        PageVo page = commentReplayService.queryPage(params);
 
         return R.ok().put("page", page);
     }

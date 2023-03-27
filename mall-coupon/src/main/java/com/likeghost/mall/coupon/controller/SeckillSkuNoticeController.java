@@ -1,6 +1,6 @@
 package com.likeghost.mall.coupon.controller;
 
-import com.likeghost.common.utils.PageUtils;
+import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.coupon.entity.SeckillSkuNoticeEntity;
 import com.likeghost.mall.coupon.service.SeckillSkuNoticeService;
@@ -31,7 +31,7 @@ public class SeckillSkuNoticeController {
     @RequestMapping("/list")
     //@RequiresPermissions("coupon:seckillskunotice:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = seckillSkuNoticeService.queryPage(params);
+        PageVo page = seckillSkuNoticeService.queryPage(params);
 
         return R.ok().put("page", page);
     }

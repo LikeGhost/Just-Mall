@@ -1,6 +1,6 @@
 package com.likeghost.mall.member.controller;
 
-import com.likeghost.common.utils.PageUtils;
+import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.member.entity.GrowthChangeHistoryEntity;
 import com.likeghost.mall.member.service.GrowthChangeHistoryService;
@@ -31,7 +31,7 @@ public class GrowthChangeHistoryController {
     @RequestMapping("/list")
     //@RequiresPermissions("member:growthchangehistory:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = growthChangeHistoryService.queryPage(params);
+        PageVo page = growthChangeHistoryService.queryPage(params);
 
         return R.ok().put("page", page);
     }

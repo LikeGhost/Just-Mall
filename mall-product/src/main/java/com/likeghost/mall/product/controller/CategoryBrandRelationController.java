@@ -1,6 +1,6 @@
 package com.likeghost.mall.product.controller;
 
-import com.likeghost.common.utils.PageUtils;
+import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.product.entity.CategoryBrandRelationEntity;
 import com.likeghost.mall.product.service.CategoryBrandRelationService;
@@ -31,7 +31,7 @@ public class CategoryBrandRelationController {
     @RequestMapping("/list")
     //@RequiresPermissions("product:categorybrandrelation:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = categoryBrandRelationService.queryPage(params);
+        PageVo page = categoryBrandRelationService.queryPage(params);
 
         return R.ok().put("page", page);
     }

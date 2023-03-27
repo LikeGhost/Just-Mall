@@ -1,6 +1,6 @@
 package com.likeghost.mall.coupon.controller;
 
-import com.likeghost.common.utils.PageUtils;
+import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.coupon.entity.SeckillSessionEntity;
 import com.likeghost.mall.coupon.service.SeckillSessionService;
@@ -31,7 +31,7 @@ public class SeckillSessionController {
     @RequestMapping("/list")
     //@RequiresPermissions("coupon:seckillsession:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = seckillSessionService.queryPage(params);
+        PageVo page = seckillSessionService.queryPage(params);
 
         return R.ok().put("page", page);
     }

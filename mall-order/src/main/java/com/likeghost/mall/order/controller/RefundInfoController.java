@@ -1,6 +1,6 @@
 package com.likeghost.mall.order.controller;
 
-import com.likeghost.common.utils.PageUtils;
+import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.order.entity.RefundInfoEntity;
 import com.likeghost.mall.order.service.RefundInfoService;
@@ -31,7 +31,7 @@ public class RefundInfoController {
     @RequestMapping("/list")
     //@RequiresPermissions("order:refundinfo:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = refundInfoService.queryPage(params);
+        PageVo page = refundInfoService.queryPage(params);
 
         return R.ok().put("page", page);
     }

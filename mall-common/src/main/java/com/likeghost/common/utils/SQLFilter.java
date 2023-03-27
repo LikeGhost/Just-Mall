@@ -8,6 +8,7 @@
 
 package com.likeghost.common.utils;
 
+import com.likeghost.common.exception.RRException;
 import org.apache.commons.lang.StringUtils;
 
 /**

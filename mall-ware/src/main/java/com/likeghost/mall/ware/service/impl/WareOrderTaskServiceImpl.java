@@ -3,7 +3,7 @@ package com.likeghost.mall.ware.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.likeghost.common.utils.PageUtils;
+import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.Query;
 import com.likeghost.mall.ware.dao.WareOrderTaskDao;
 import com.likeghost.mall.ware.entity.WareOrderTaskEntity;
@@ -17,13 +17,13 @@ import java.util.Map;
 public class WareOrderTaskServiceImpl extends ServiceImpl<WareOrderTaskDao, WareOrderTaskEntity> implements WareOrderTaskService {
 
     @Override
-    public PageUtils queryPage(Map<String, Object> params) {
+    public PageVo queryPage(Map<String, Object> params) {
         IPage<WareOrderTaskEntity> page = this.page(
                 new Query<WareOrderTaskEntity>().getPage(params),
                 new QueryWrapper<WareOrderTaskEntity>()
         );
 
-        return new PageUtils(page);
+        return new PageVo(page);
     }
 
 }

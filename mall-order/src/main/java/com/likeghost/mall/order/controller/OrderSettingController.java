@@ -1,6 +1,6 @@
 package com.likeghost.mall.order.controller;
 
-import com.likeghost.common.utils.PageUtils;
+import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.order.entity.OrderSettingEntity;
 import com.likeghost.mall.order.service.OrderSettingService;
@@ -31,7 +31,7 @@ public class OrderSettingController {
     @RequestMapping("/list")
     //@RequiresPermissions("order:ordersetting:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = orderSettingService.queryPage(params);
+        PageVo page = orderSettingService.queryPage(params);
 
         return R.ok().put("page", page);
     }

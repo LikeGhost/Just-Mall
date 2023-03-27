@@ -1,6 +1,6 @@
 package com.likeghost.mall.product.controller;
 
-import com.likeghost.common.utils.PageUtils;
+import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.product.entity.SpuCommentEntity;
 import com.likeghost.mall.product.service.SpuCommentService;
@@ -31,7 +31,7 @@ public class SpuCommentController {
     @RequestMapping("/list")
     //@RequiresPermissions("product:spucomment:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = spuCommentService.queryPage(params);
+        PageVo page = spuCommentService.queryPage(params);
 
         return R.ok().put("page", page);
     }
