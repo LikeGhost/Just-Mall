@@ -11,10 +11,6 @@
 
     <artifactId>mall-common</artifactId>
     <description>项目公共依赖</description>
-    <!--    <properties>-->
-    <!--        <maven.compiler.source>13</maven.compiler.source>-->
-    <!--        <maven.compiler.target>13</maven.compiler.target>-->
-    <!--    </properties>-->
 
     <dependencies>
         <!--        mybatis-plus-->
@@ -56,6 +52,13 @@
 
 
         <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-loadbalancer</artifactId>
+            <version>2.2.6.RELEASE</version>
+        </dependency>
+
+
+        <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
@@ -67,6 +70,19 @@
             <artifactId>spring-boot-devtools</artifactId>
             <version>2.7.4</version>
         </dependency>
+        <!--        swagger-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.7.0</version>
+        </dependency>
+
+        <!--        swagger-ui-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.7.0</version>
+        </dependency>
 
     </dependencies>
     <dependencyManagement>
@@ -74,7 +90,7 @@
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>2020.0.RC1</version>
+                <version>2021.0.1.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

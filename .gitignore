@@ -21,3 +21,6 @@ buildNumber.properties
 
 /**/.gitignore
 
+/nacos/
+/minio/
+/mall.iml
