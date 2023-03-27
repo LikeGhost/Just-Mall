@@ -17,7 +17,12 @@ spring:
             - Path=/api/product/**
           filters:
             - RewritePath=/api/(?<segment>.*),/$\{segment}
-
+        - id: minio_route
+          uri: lb://mall-third-party
+          predicates:
+            - Path=/api/minio/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
         - id: admin_route
           uri: lb://renren-fast
           predicates:

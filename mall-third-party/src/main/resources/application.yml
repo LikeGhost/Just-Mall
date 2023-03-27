@@ -1,0 +1,27 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  application:
+    name: mall-third-party
+  devtools:
+    #热部署生效,默认就是true
+    restart:
+      enabled: true
+
+server:
+  port: 30000
+
+minio:
+  endpoint: localhost
+  port: 9000
+  accessKey: minioadmin
+  secretKey: minioadmin
+  secure: false
+  defaultBucketName: "mall"
+
+logging:
+  level:
+    org.springframework.web: debug
+

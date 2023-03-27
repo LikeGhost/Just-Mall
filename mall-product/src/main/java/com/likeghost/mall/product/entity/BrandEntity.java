@@ -7,11 +7,10 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 品牌
- * 
  * @author LikeGhost
- * @email 1154083659@qq.com
- * @date 2022-10-07 20:57:15
+ * @version 1.0
+ * @date 2023/3/27 22:18
+ * @description
  */
 @Data
 @TableName("pms_brand")
@@ -34,11 +33,11 @@ public class BrandEntity implements Serializable {
 	/**
 	 * 介绍
 	 */
-	private String descript;
+	private String description;
 	/**
 	 * 显示状态[0-不显示；1-显示]
 	 */
-	private Integer showStatus;
+	private Boolean showStatus;
 	/**
 	 * 检索首字母
 	 */
