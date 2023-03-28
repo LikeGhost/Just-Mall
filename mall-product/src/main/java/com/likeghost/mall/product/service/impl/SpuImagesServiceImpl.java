@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.Query;
-import com.likeghost.mall.product.dao.SpuImagesDao;
-import com.likeghost.mall.product.entity.SpuImagesEntity;
+import com.likeghost.mall.product.pojo.dao.SpuImagesDao;
+import com.likeghost.mall.product.pojo.entity.SpuImagesEntity;
 import com.likeghost.mall.product.service.SpuImagesService;
 import org.springframework.stereotype.Service;
 

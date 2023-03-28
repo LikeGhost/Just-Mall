@@ -2,7 +2,7 @@ package com.likeghost.mall.product.controller;
 
 import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
-import com.likeghost.mall.product.entity.CategoryBrandRelationEntity;
+import com.likeghost.mall.product.pojo.entity.CategoryBrandRelationEntity;
 import com.likeghost.mall.product.service.CategoryBrandRelationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

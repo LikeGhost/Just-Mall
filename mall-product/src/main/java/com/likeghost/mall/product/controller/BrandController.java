@@ -2,10 +2,10 @@ package com.likeghost.mall.product.controller;
 
 import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
-import com.likeghost.mall.product.entity.BrandEntity;
+import com.likeghost.mall.product.pojo.entity.BrandEntity;
 import com.likeghost.mall.product.feign.MinioService;
 import com.likeghost.mall.product.service.BrandService;
-import com.likeghost.mall.product.vo.BrandVo;
+import com.likeghost.mall.product.pojo.vo.BrandVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

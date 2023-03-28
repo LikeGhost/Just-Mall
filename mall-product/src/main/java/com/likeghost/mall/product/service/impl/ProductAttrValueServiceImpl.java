@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.Query;
-import com.likeghost.mall.product.dao.ProductAttrValueDao;
-import com.likeghost.mall.product.entity.ProductAttrValueEntity;
+import com.likeghost.mall.product.pojo.dao.ProductAttrValueDao;
+import com.likeghost.mall.product.pojo.entity.ProductAttrValueEntity;
 import com.likeghost.mall.product.service.ProductAttrValueService;
 import org.springframework.stereotype.Service;
 
