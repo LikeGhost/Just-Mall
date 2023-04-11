@@ -59,22 +59,22 @@
         label="每次评价获取的成长值">
       </el-table-column>
       <el-table-column
-        prop="priviledgeFreeFreight"
-        header-align="center"
-        align="center"
-        label="是否有免邮特权">
+          prop="privilegeFreeFreight"
+          header-align="center"
+          align="center"
+          label="是否有免邮特权">
       </el-table-column>
       <el-table-column
-        prop="priviledgeMemberPrice"
-        header-align="center"
-        align="center"
-        label="是否有会员价格特权">
+          prop="privilegeMemberPrice"
+          header-align="center"
+          align="center"
+          label="是否有会员价格特权">
       </el-table-column>
       <el-table-column
-        prop="priviledgeBirthday"
-        header-align="center"
-        align="center"
-        label="是否有生日特权">
+          prop="privilegeBirthday"
+          header-align="center"
+          align="center"
+          label="是否有生日特权">
       </el-table-column>
       <el-table-column
         prop="note"

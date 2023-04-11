@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(Throwable.class)
     public R handleException(Throwable e) {
 
+        e.printStackTrace();
 
         return R.error().put("error", e.getMessage());
     }

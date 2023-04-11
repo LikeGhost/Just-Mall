@@ -47,8 +47,8 @@ public class MinioController {
     public R putPreSignedUrl(@RequestBody Map<String, String> reqData) {
 
         String filename = reqData.get("filename");
-        // TODO: 2023/3/17 寻找合适的文件名生成方式，暂时使用UUID和简单雪花
-        String suffix = filename.split("\\.")[1];
+        // TODO: 2023/3/17 寻找合适的文件名生成方式，暂时使用UUID或简单雪花
+        String suffix = filename.split("\\.")[filename.length() - 1];
 //      String filename=new StringBuffer(String.valueOf(new Date().getTime())).reverse()+String.valueOf((int)(Math.random()*100));
         String filepath = UUID.randomUUID().toString().replace("-", "");
         filepath = filepath + "." + suffix;

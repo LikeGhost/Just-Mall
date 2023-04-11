@@ -7,18 +7,18 @@
     <el-form-item label="组名" prop="attrGroupName">
       <el-input v-model="dataForm.attrGroupName" placeholder="组名"></el-input>
     </el-form-item>
-    <el-form-item label="排序" prop="sort">
-      <el-input v-model="dataForm.sort" placeholder="排序"></el-input>
-    </el-form-item>
-    <el-form-item label="描述" prop="descript">
-      <el-input v-model="dataForm.descript" placeholder="描述"></el-input>
-    </el-form-item>
-    <el-form-item label="组图标" prop="icon">
-      <el-input v-model="dataForm.icon" placeholder="组图标"></el-input>
-    </el-form-item>
-    <el-form-item label="所属分类id" prop="catelogId">
-      <el-input v-model="dataForm.catelogId" placeholder="所属分类id"></el-input>
-    </el-form-item>
+      <el-form-item label="排序" prop="sort">
+        <el-input v-model="dataForm.sort" placeholder="排序"></el-input>
+      </el-form-item>
+      <el-form-item label="描述" prop="descript">
+        <el-input v-model="dataForm.descript" placeholder="描述"></el-input>
+      </el-form-item>
+      <el-form-item label="组图标" prop="icon">
+        <el-input v-model="dataForm.icon" placeholder="组图标"></el-input>
+      </el-form-item>
+      <el-form-item label="所属分类id" prop="catId">
+        <el-input v-model="dataForm.catId" placeholder="所属分类id"></el-input>
+      </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button @click="visible = false">取消</el-button>
@@ -38,7 +38,7 @@
           sort: '',
           descript: '',
           icon: '',
-          catelogId: ''
+          catId: ''
         },
         dataRule: {
           attrGroupName: [
@@ -53,8 +53,8 @@
           icon: [
             { required: true, message: '组图标不能为空', trigger: 'blur' }
           ],
-          catelogId: [
-            { required: true, message: '所属分类id不能为空', trigger: 'blur' }
+          catId: [
+            {required: true, message: '所属分类id不能为空', trigger: 'blur'}
           ]
         }
       }
@@ -76,7 +76,7 @@
                 this.dataForm.sort = data.attrGroup.sort
                 this.dataForm.descript = data.attrGroup.descript
                 this.dataForm.icon = data.attrGroup.icon
-                this.dataForm.catelogId = data.attrGroup.catelogId
+                this.dataForm.catId = data.attrGroup.catId
               }
             })
           }
@@ -95,7 +95,7 @@
                 'sort': this.dataForm.sort,
                 'descript': this.dataForm.descript,
                 'icon': this.dataForm.icon,
-                'catelogId': this.dataForm.catelogId
+                'catId': this.dataForm.catId
               })
             }).then(({data}) => {
               if (data && data.code === 0) {

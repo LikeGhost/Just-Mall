@@ -44,7 +44,7 @@
               params: this.$http.adornParams()
             }).then(({data}) => {
               if (data && data.code === 0) {
-                this.dataForm.decript = data.spuInfoDesc.decript
+                this.dataForm.decript = data.spuInfoDetail.decript
               }
             })
           }

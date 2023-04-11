@@ -3,6 +3,7 @@ package com.likeghost.mall.product.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.mall.product.pojo.entity.AttrEntity;
+import com.likeghost.mall.product.pojo.vo.AttrVo;
 
 import java.util.Map;
 
@@ -15,6 +16,19 @@ import java.util.Map;
  */
 public interface AttrService extends IService<AttrEntity> {
 
-    PageVo queryPage(Map<String, Object> params);
+    PageVo queryPageByCatId(Map<String, Object> params);
+
+    PageVo queryPageByCatId(Map<String, Object> params, Long catId);
+
+//    Boolean save(AttrVo attr);
+
+    AttrVo getAttrInfo(Long attrId);
+
+//    Boolean updateById(AttrVo attr);
+
+
+    Boolean saveOrUpdate(AttrVo attr);
+
+    PageVo queryPageByAttrTypeAndCatId(Map<String, Object> params, String attrType, Long catId);
 }
 

@@ -5,10 +5,11 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.Query;
+import com.likeghost.mall.product.feign.MinioService;
 import com.likeghost.mall.product.pojo.dao.BrandDao;
 import com.likeghost.mall.product.pojo.entity.BrandEntity;
-import com.likeghost.mall.product.feign.MinioService;
 import com.likeghost.mall.product.service.BrandService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,9 +36,9 @@ public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> impleme
         LambdaQueryWrapper<BrandEntity> queryWrapper = new LambdaQueryWrapper<>();
 
 
-        if (key != null && !"".equals(key)) {
-            key = "%" + key + "%";
-            queryWrapper.like(BrandEntity::getName, key).or().like(BrandEntity::getFirstLetter, key);
+        if (!StringUtils.isEmpty(key)) {
+
+            queryWrapper.like(BrandEntity::getName, "%" + key + "%").or().eq(BrandEntity::getFirstLetter, key);
         }
         IPage<BrandEntity> page = this.page(
                 new Query<BrandEntity>().getPage(params),
@@ -55,5 +56,6 @@ public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> impleme
 
         return new PageVo(page);
     }
+
 
 }

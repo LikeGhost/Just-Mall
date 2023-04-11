@@ -24,20 +24,20 @@ public class CategoryBrandRelationEntity implements Serializable {
 	@TableId
 	private Long id;
 	/**
-	 * 品牌id
-	 */
-	private Long brandId;
-	/**
-	 * 分类id
-	 */
-	private Long catelogId;
-	/**
-	 * 
-	 */
-	private String brandName;
-	/**
-	 * 
-	 */
-	private String catelogName;
+     * 品牌id
+     */
+    private Long brandId;
+    /**
+     * 分类id
+     */
+    private Long catId;
+    /**
+     *
+     */
+    private String brandName;
+    /**
+     *
+     */
+    private String categoryName;
 
 }

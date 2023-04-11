@@ -1,30 +1,21 @@
-package com.likeghost.mall.product.pojo.entity;
+package com.likeghost.mall.product.pojo.vo;
 
-import com.baomidou.mybatisplus.annotation.FieldStrategy;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 
 import java.io.Serializable;
 
 /**
- * 商品属性
- *
  * @author LikeGhost
- * @email 1154083659@qq.com
- * @date 2022-10-07 20:57:15
+ * @version 1.0
+ * @date 2023/4/7 16:26
+ * @description
  */
 @Data
-@TableName("pms_attr")
-public class AttrEntity extends Model<AttrEntity> implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class AttrVo implements Serializable {
 
     /**
      * 属性id
      */
-    @TableId
     private Long attrId;
     /**
      * 属性名
@@ -47,7 +38,6 @@ public class AttrEntity extends Model<AttrEntity> implements Serializable {
     /**
      * 可选值列表[用逗号分隔]
      */
-    @TableField(insertStrategy = FieldStrategy.IGNORED, updateStrategy = FieldStrategy.IGNORED)
     private String valueSelect;
     /**
      * 属性类型[0-销售属性，1-基本属性，2-既是销售属性又是基本属性]
@@ -66,8 +56,8 @@ public class AttrEntity extends Model<AttrEntity> implements Serializable {
      */
     private Boolean quickShow;
 
-    @Override
-    protected Serializable pkVal() {
-        return this.attrId;
-    }
+    private Long attrGroupId;
+
+    private String categoryName;
+    private String attrGroupName;
 }

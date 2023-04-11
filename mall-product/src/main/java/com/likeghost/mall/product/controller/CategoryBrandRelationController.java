@@ -20,7 +20,7 @@ import java.util.Map;
  * @date 2022-10-07 20:57:15
  */
 @RestController
-@RequestMapping("product/categorybrandrelation")
+@RequestMapping("product/category-brand-relation")
 public class CategoryBrandRelationController {
     @Autowired
     private CategoryBrandRelationService categoryBrandRelationService;
@@ -28,10 +28,26 @@ public class CategoryBrandRelationController {
     /**
      * 列表
      */
-    @RequestMapping("/list")
+    @GetMapping("/list")
     //@RequiresPermissions("product:categorybrandrelation:list")
-    public R list(@RequestParam Map<String, Object> params){
-        PageVo page = categoryBrandRelationService.queryPage(params);
+    public R list(@RequestParam Map<String, Object> params) {
+        PageVo page = categoryBrandRelationService.queryPageByBrandId(params);
+
+        return R.ok().put("page", page);
+    }
+
+    @GetMapping("/list/brand/{brandId}")
+    //@RequiresPermissions("product:categorybrandrelation:list")
+    public R listByBrandId(@RequestParam Map<String, Object> params, @PathVariable Long brandId) {
+        PageVo page = categoryBrandRelationService.queryPageByBrandId(params, brandId);
+
+        return R.ok().put("page", page);
+    }
+
+    @GetMapping("/list/cat/{catId}")
+    //@RequiresPermissions("product:categorybrandrelation:list")
+    public R listByCatId(@RequestParam Map<String, Object> params, @PathVariable Long catId) {
+        PageVo page = categoryBrandRelationService.queryPageByCatId(params, catId);
 
         return R.ok().put("page", page);
     }
@@ -54,8 +70,8 @@ public class CategoryBrandRelationController {
     @RequestMapping("/save")
     //@RequiresPermissions("product:categorybrandrelation:save")
     public R save(@RequestBody CategoryBrandRelationEntity categoryBrandRelation){
-		categoryBrandRelationService.save(categoryBrandRelation);
 
+        categoryBrandRelationService.saveDetail(categoryBrandRelation);
         return R.ok();
     }
 

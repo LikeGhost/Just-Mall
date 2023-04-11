@@ -28,20 +28,20 @@ public class AttrGroupEntity implements Serializable {
 	 */
 	private String attrGroupName;
 	/**
-	 * 排序
-	 */
-	private Integer sort;
-	/**
-	 * 描述
-	 */
-	private String descript;
-	/**
-	 * 组图标
-	 */
-	private String icon;
-	/**
-	 * 所属分类id
-	 */
-	private Long catelogId;
+     * 排序
+     */
+    private Integer sort;
+    /**
+     * 描述
+     */
+    private String description;
+    /**
+     * 组图标
+     */
+    private String icon;
+    /**
+     * 所属分类id
+     */
+    private Long catId;
 
 }

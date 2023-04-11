@@ -2,7 +2,7 @@ package com.likeghost.mall.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.likeghost.common.pojo.vo.PageVo;
-import com.likeghost.mall.product.pojo.entity.AttrAttrgroupRelationEntity;
+import com.likeghost.mall.product.pojo.entity.AttrAttrGroupRelationEntity;
 
 import java.util.Map;
 
@@ -13,8 +13,10 @@ import java.util.Map;
  * @email 1154083659@qq.com
  * @date 2022-10-07 20:57:15
  */
-public interface AttrAttrgroupRelationService extends IService<AttrAttrgroupRelationEntity> {
+public interface AttrAttrGroupRelationService extends IService<AttrAttrGroupRelationEntity> {
 
     PageVo queryPage(Map<String, Object> params);
+
+    PageVo queryPage(Map<String, Object> params, Long attrId);
 }
 

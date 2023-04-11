@@ -2,14 +2,13 @@ package com.likeghost.mall.product.controller;
 
 import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
-import com.likeghost.mall.product.pojo.entity.SpuInfoDescEntity;
-import com.likeghost.mall.product.service.SpuInfoDescService;
+import com.likeghost.mall.product.pojo.entity.SpuInfoDetailEntity;
+import com.likeghost.mall.product.service.SpuInfoDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.Map;
-
 
 
 /**
@@ -21,17 +20,17 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("product/spuinfodesc")
-public class SpuInfoDescController {
+public class SpuInfoDetailController {
     @Autowired
-    private SpuInfoDescService spuInfoDescService;
+    private SpuInfoDetailService spuInfoDetailService;
 
     /**
      * 列表
      */
     @RequestMapping("/list")
     //@RequiresPermissions("product:spuinfodesc:list")
-    public R list(@RequestParam Map<String, Object> params){
-        PageVo page = spuInfoDescService.queryPage(params);
+    public R list(@RequestParam Map<String, Object> params) {
+        PageVo page = spuInfoDetailService.queryPage(params);
 
         return R.ok().put("page", page);
     }
@@ -43,9 +42,9 @@ public class SpuInfoDescController {
     @RequestMapping("/info/{spuId}")
     //@RequiresPermissions("product:spuinfodesc:info")
     public R info(@PathVariable("spuId") Long spuId){
-		SpuInfoDescEntity spuInfoDesc = spuInfoDescService.getById(spuId);
+        SpuInfoDetailEntity spuInfoDetail = spuInfoDetailService.getById(spuId);
 
-        return R.ok().put("spuInfoDesc", spuInfoDesc);
+        return R.ok().put("spuInfoDetail", spuInfoDetail);
     }
 
     /**
@@ -53,8 +52,8 @@ public class SpuInfoDescController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:spuinfodesc:save")
-    public R save(@RequestBody SpuInfoDescEntity spuInfoDesc){
-		spuInfoDescService.save(spuInfoDesc);
+    public R save(@RequestBody SpuInfoDetailEntity spuInfoDetail) {
+        spuInfoDetailService.save(spuInfoDetail);
 
         return R.ok();
     }
@@ -64,8 +63,8 @@ public class SpuInfoDescController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:spuinfodesc:update")
-    public R update(@RequestBody SpuInfoDescEntity spuInfoDesc){
-		spuInfoDescService.updateById(spuInfoDesc);
+    public R update(@RequestBody SpuInfoDetailEntity spuInfoDetail) {
+        spuInfoDetailService.updateById(spuInfoDetail);
 
         return R.ok();
     }
@@ -76,7 +75,7 @@ public class SpuInfoDescController {
     @RequestMapping("/delete")
     //@RequiresPermissions("product:spuinfodesc:delete")
     public R delete(@RequestBody Long[] spuIds){
-		spuInfoDescService.removeByIds(Arrays.asList(spuIds));
+        spuInfoDetailService.removeByIds(Arrays.asList(spuIds));
 
         return R.ok();
     }

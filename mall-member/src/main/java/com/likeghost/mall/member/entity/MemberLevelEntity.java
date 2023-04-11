@@ -41,24 +41,24 @@ public class MemberLevelEntity implements Serializable {
 	 */
 	private BigDecimal freeFreightPoint;
 	/**
-	 * 每次评价获取的成长值
-	 */
-	private Integer commentGrowthPoint;
-	/**
-	 * 是否有免邮特权
-	 */
-	private Integer priviledgeFreeFreight;
-	/**
-	 * 是否有会员价格特权
-	 */
-	private Integer priviledgeMemberPrice;
-	/**
-	 * 是否有生日特权
-	 */
-	private Integer priviledgeBirthday;
-	/**
-	 * 备注
-	 */
-	private String note;
+     * 每次评价获取的成长值
+     */
+    private Integer commentGrowthPoint;
+    /**
+     * 是否有免邮特权
+     */
+    private Integer privilegeFreeFreight;
+    /**
+     * 是否有会员价格特权
+     */
+    private Integer privilegeMemberPrice;
+    /**
+     * 是否有生日特权
+     */
+    private Integer privilegeBirthday;
+    /**
+     * 备注
+     */
+    private String note;
 
 }

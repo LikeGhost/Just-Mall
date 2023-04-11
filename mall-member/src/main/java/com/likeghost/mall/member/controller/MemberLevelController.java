@@ -20,7 +20,7 @@ import java.util.Map;
  * @date 2022-10-07 21:03:16
  */
 @RestController
-@RequestMapping("member/memberlevel")
+@RequestMapping("member/member-level")
 public class MemberLevelController {
     @Autowired
     private MemberLevelService memberLevelService;

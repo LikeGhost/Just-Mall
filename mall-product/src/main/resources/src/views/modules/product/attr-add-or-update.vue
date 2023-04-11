@@ -13,21 +13,23 @@
     <el-form-item label="属性图标" prop="icon">
       <el-input v-model="dataForm.icon" placeholder="属性图标"></el-input>
     </el-form-item>
-    <el-form-item label="可选值列表[用逗号分隔]" prop="valueSelect">
-      <el-input v-model="dataForm.valueSelect" placeholder="可选值列表[用逗号分隔]"></el-input>
-    </el-form-item>
-    <el-form-item label="属性类型[0-销售属性，1-基本属性，2-既是销售属性又是基本属性]" prop="attrType">
-      <el-input v-model="dataForm.attrType" placeholder="属性类型[0-销售属性，1-基本属性，2-既是销售属性又是基本属性]"></el-input>
-    </el-form-item>
-    <el-form-item label="启用状态[0 - 禁用，1 - 启用]" prop="enable">
-      <el-input v-model="dataForm.enable" placeholder="启用状态[0 - 禁用，1 - 启用]"></el-input>
-    </el-form-item>
-    <el-form-item label="所属分类" prop="catelogId">
-      <el-input v-model="dataForm.catelogId" placeholder="所属分类"></el-input>
-    </el-form-item>
-    <el-form-item label="快速展示【是否展示在介绍上；0-否 1-是】，在sku中仍然可以调整" prop="showDesc">
-      <el-input v-model="dataForm.showDesc" placeholder="快速展示【是否展示在介绍上；0-否 1-是】，在sku中仍然可以调整"></el-input>
-    </el-form-item>
+      <el-form-item label="可选值列表[用逗号分隔]" prop="valueSelect">
+        <el-input v-model="dataForm.valueSelect" placeholder="可选值列表[用逗号分隔]"></el-input>
+      </el-form-item>
+      <el-form-item label="属性类型[0-销售属性，1-基本属性，2-既是销售属性又是基本属性]" prop="attrType">
+        <el-input v-model="dataForm.attrType"
+                  placeholder="属性类型[0-销售属性，1-基本属性，2-既是销售属性又是基本属性]"></el-input>
+      </el-form-item>
+      <el-form-item label="启用状态[0 - 禁用，1 - 启用]" prop="enable">
+        <el-input v-model="dataForm.enable" placeholder="启用状态[0 - 禁用，1 - 启用]"></el-input>
+      </el-form-item>
+      <el-form-item label="所属分类" prop="catId">
+        <el-input v-model="dataForm.catId" placeholder="所属分类"></el-input>
+      </el-form-item>
+      <el-form-item label="快速展示【是否展示在介绍上；0-否 1-是】，在sku中仍然可以调整" prop="showDesc">
+        <el-input v-model="dataForm.showDesc"
+                  placeholder="快速展示【是否展示在介绍上；0-否 1-是】，在sku中仍然可以调整"></el-input>
+      </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button @click="visible = false">取消</el-button>
@@ -49,7 +51,7 @@
           valueSelect: '',
           attrType: '',
           enable: '',
-          catelogId: '',
+          catId: '',
           showDesc: ''
         },
         dataRule: {
@@ -71,8 +73,8 @@
           enable: [
             { required: true, message: '启用状态[0 - 禁用，1 - 启用]不能为空', trigger: 'blur' }
           ],
-          catelogId: [
-            { required: true, message: '所属分类不能为空', trigger: 'blur' }
+          catId: [
+            {required: true, message: '所属分类不能为空', trigger: 'blur'}
           ],
           showDesc: [
             { required: true, message: '快速展示【是否展示在介绍上；0-否 1-是】，在sku中仍然可以调整不能为空', trigger: 'blur' }
@@ -99,7 +101,7 @@
                 this.dataForm.valueSelect = data.attr.valueSelect
                 this.dataForm.attrType = data.attr.attrType
                 this.dataForm.enable = data.attr.enable
-                this.dataForm.catelogId = data.attr.catelogId
+                this.dataForm.catId = data.attr.catId
                 this.dataForm.showDesc = data.attr.showDesc
               }
             })
@@ -121,7 +123,7 @@
                 'valueSelect': this.dataForm.valueSelect,
                 'attrType': this.dataForm.attrType,
                 'enable': this.dataForm.enable,
-                'catelogId': this.dataForm.catelogId,
+                'catId': this.dataForm.catId,
                 'showDesc': this.dataForm.showDesc
               })
             }).then(({data}) => {
