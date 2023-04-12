@@ -8,24 +8,24 @@ import java.io.Serializable;
 
 /**
  * spu图片
- * 
+ *
  * @author LikeGhost
  * @email 1154083659@qq.com
  * @date 2022-10-07 20:57:15
  */
 @Data
-@TableName("pms_spu_images")
-public class SpuImagesEntity implements Serializable {
-	private static final long serialVersionUID = 1L;
+@TableName("pms_spu_image")
+public class SpuImageEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * id
-	 */
-	@TableId
-	private Long id;
-	/**
-	 * spu_id
-	 */
+    /**
+     * id
+     */
+    @TableId
+    private Long id;
+    /**
+     * spu_id
+     */
 	private Long spuId;
 	/**
 	 * 图片名

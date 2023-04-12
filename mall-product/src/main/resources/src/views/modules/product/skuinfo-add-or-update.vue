@@ -3,25 +3,26 @@
     :title="!dataForm.skuId ? '新增' : '修改'"
     :close-on-click-modal="false"
     :visible.sync="visible">
-    <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()" label-width="80px">
-    <el-form-item label="spuId" prop="spuId">
-      <el-input v-model="dataForm.spuId" placeholder="spuId"></el-input>
-    </el-form-item>
-    <el-form-item label="sku名称" prop="skuName">
-      <el-input v-model="dataForm.skuName" placeholder="sku名称"></el-input>
-    </el-form-item>
-    <el-form-item label="sku介绍描述" prop="skuDesc">
-      <el-input v-model="dataForm.skuDesc" placeholder="sku介绍描述"></el-input>
-    </el-form-item>
-    <el-form-item label="所属分类id" prop="catalogId">
-      <el-input v-model="dataForm.catalogId" placeholder="所属分类id"></el-input>
-    </el-form-item>
-    <el-form-item label="品牌id" prop="brandId">
-      <el-input v-model="dataForm.brandId" placeholder="品牌id"></el-input>
-    </el-form-item>
-    <el-form-item label="默认图片" prop="skuDefaultImg">
-      <el-input v-model="dataForm.skuDefaultImg" placeholder="默认图片"></el-input>
-    </el-form-item>
+    <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()"
+             label-width="80px">
+      <el-form-item label="spuId" prop="spuId">
+        <el-input v-model="dataForm.spuId" placeholder="spuId"></el-input>
+      </el-form-item>
+      <el-form-item label="sku名称" prop="skuName">
+        <el-input v-model="dataForm.skuName" placeholder="sku名称"></el-input>
+      </el-form-item>
+      <el-form-item label="sku介绍描述" prop="skuDescription">
+        <el-input v-model="dataForm.skuDescription" placeholder="sku介绍描述"></el-input>
+      </el-form-item>
+      <el-form-item label="所属分类id" prop="catalogId">
+        <el-input v-model="dataForm.catalogId" placeholder="所属分类id"></el-input>
+      </el-form-item>
+      <el-form-item label="品牌id" prop="brandId">
+        <el-input v-model="dataForm.brandId" placeholder="品牌id"></el-input>
+      </el-form-item>
+      <el-form-item label="默认图片" prop="skuDefaultImg">
+        <el-input v-model="dataForm.skuDefaultImg" placeholder="默认图片"></el-input>
+      </el-form-item>
     <el-form-item label="标题" prop="skuTitle">
       <el-input v-model="dataForm.skuTitle" placeholder="标题"></el-input>
     </el-form-item>
@@ -51,7 +52,7 @@
           skuId: 0,
           spuId: '',
           skuName: '',
-          skuDesc: '',
+          skuDescription: '',
           catalogId: '',
           brandId: '',
           skuDefaultImg: '',
@@ -67,8 +68,8 @@
           skuName: [
             { required: true, message: 'sku名称不能为空', trigger: 'blur' }
           ],
-          skuDesc: [
-            { required: true, message: 'sku介绍描述不能为空', trigger: 'blur' }
+          skuDescription: [
+            {required: true, message: 'sku介绍描述不能为空', trigger: 'blur'}
           ],
           catalogId: [
             { required: true, message: '所属分类id不能为空', trigger: 'blur' }
@@ -109,7 +110,7 @@
               if (data && data.code === 0) {
                 this.dataForm.spuId = data.skuInfo.spuId
                 this.dataForm.skuName = data.skuInfo.skuName
-                this.dataForm.skuDesc = data.skuInfo.skuDesc
+                this.dataForm.skuDescription = data.skuInfo.skuDescription
                 this.dataForm.catalogId = data.skuInfo.catalogId
                 this.dataForm.brandId = data.skuInfo.brandId
                 this.dataForm.skuDefaultImg = data.skuInfo.skuDefaultImg
@@ -133,7 +134,7 @@
                 'skuId': this.dataForm.skuId || undefined,
                 'spuId': this.dataForm.spuId,
                 'skuName': this.dataForm.skuName,
-                'skuDesc': this.dataForm.skuDesc,
+                'skuDescription': this.dataForm.skuDescription,
                 'catalogId': this.dataForm.catalogId,
                 'brandId': this.dataForm.brandId,
                 'skuDefaultImg': this.dataForm.skuDefaultImg,

@@ -10,6 +10,7 @@ import com.likeghost.mall.product.pojo.entity.SpuInfoDetailEntity;
 import com.likeghost.mall.product.service.SpuInfoDetailService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,6 +30,19 @@ public class SpuInfoDetailServiceImpl extends ServiceImpl<SpuInfoDetailDao, SpuI
         );
 
         return new PageVo(page);
+    }
+
+    @Override
+    public boolean saveDetail(Long spuId, List<String> details) {
+
+        if (details != null && !details.isEmpty()) {
+            String detail = String.join(";", details);
+            SpuInfoDetailEntity spuInfoDetail = new SpuInfoDetailEntity();
+            spuInfoDetail.setDetail(detail);
+            spuInfoDetail.setSpuId(spuId);
+            return this.save(spuInfoDetail);
+        }
+        return true;
     }
 
 }

@@ -41,10 +41,10 @@
         label="sku名称">
       </el-table-column>
       <el-table-column
-        prop="skuDesc"
-        header-align="center"
-        align="center"
-        label="sku介绍描述">
+          prop="skuDescription"
+          header-align="center"
+          align="center"
+          label="sku介绍描述">
       </el-table-column>
       <el-table-column
         prop="catalogId"

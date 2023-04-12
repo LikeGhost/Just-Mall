@@ -2,14 +2,13 @@ package com.likeghost.mall.product.controller;
 
 import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
-import com.likeghost.mall.product.pojo.entity.SpuImagesEntity;
-import com.likeghost.mall.product.service.SpuImagesService;
+import com.likeghost.mall.product.pojo.entity.SpuImageEntity;
+import com.likeghost.mall.product.service.SpuImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.Map;
-
 
 
 /**
@@ -21,16 +20,16 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("product/spuimages")
-public class SpuImagesController {
+public class SpuImageController {
     @Autowired
-    private SpuImagesService spuImagesService;
+    private SpuImageService spuImagesService;
 
     /**
      * 列表
      */
     @RequestMapping("/list")
     //@RequiresPermissions("product:spuimages:list")
-    public R list(@RequestParam Map<String, Object> params){
+    public R list(@RequestParam Map<String, Object> params) {
         PageVo page = spuImagesService.queryPage(params);
 
         return R.ok().put("page", page);
@@ -43,7 +42,7 @@ public class SpuImagesController {
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("product:spuimages:info")
     public R info(@PathVariable("id") Long id){
-		SpuImagesEntity spuImages = spuImagesService.getById(id);
+        SpuImageEntity spuImages = spuImagesService.getById(id);
 
         return R.ok().put("spuImages", spuImages);
     }
@@ -53,8 +52,8 @@ public class SpuImagesController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:spuimages:save")
-    public R save(@RequestBody SpuImagesEntity spuImages){
-		spuImagesService.save(spuImages);
+    public R save(@RequestBody SpuImageEntity spuImages) {
+        spuImagesService.save(spuImages);
 
         return R.ok();
     }
@@ -64,8 +63,8 @@ public class SpuImagesController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:spuimages:update")
-    public R update(@RequestBody SpuImagesEntity spuImages){
-		spuImagesService.updateById(spuImages);
+    public R update(@RequestBody SpuImageEntity spuImages) {
+        spuImagesService.updateById(spuImages);
 
         return R.ok();
     }

@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.likeghost.common.constant.product.AttrType;
+import com.likeghost.common.constant.ProductConstant;
 import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.Query;
 import com.likeghost.mall.product.pojo.dao.AttrDao;
@@ -117,7 +117,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
 //        }
 
         if (attrType != null) {
-            AttrType _attrType = AttrType.valueOf(attrType.toUpperCase() + "_ATTR");
+            ProductConstant.AttrType _attrType = ProductConstant.AttrType.valueOf(attrType.toUpperCase() + "_ATTR");
             queryWrapper.eq(AttrEntity::getAttrType, _attrType.getCode());
         }
 
@@ -155,7 +155,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         BeanUtils.copyProperties(attr, attrEntity);
         result = result && this.saveOrUpdate(attrEntity);
 
-        if (attr.getAttrType() == AttrType.BASE_ATTR.getCode()) {
+        if (attr.getAttrType() == ProductConstant.AttrType.BASE_ATTR.getCode()) {
             BeanUtils.copyProperties(attrEntity, attr);
 
             AttrAttrGroupRelationEntity relation = new AttrAttrGroupRelationEntity();

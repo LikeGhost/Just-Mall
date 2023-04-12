@@ -5,22 +5,22 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.Query;
-import com.likeghost.mall.product.pojo.dao.SpuImagesDao;
-import com.likeghost.mall.product.pojo.entity.SpuImagesEntity;
-import com.likeghost.mall.product.service.SpuImagesService;
+import com.likeghost.mall.product.pojo.dao.SkuImageDao;
+import com.likeghost.mall.product.pojo.entity.SkuImageEntity;
+import com.likeghost.mall.product.service.SkuImageService;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
 
-@Service("spuImagesService")
-public class SpuImagesServiceImpl extends ServiceImpl<SpuImagesDao, SpuImagesEntity> implements SpuImagesService {
+@Service("skuImagesService")
+public class SkuImageServiceImpl extends ServiceImpl<SkuImageDao, SkuImageEntity> implements SkuImageService {
 
     @Override
     public PageVo queryPage(Map<String, Object> params) {
-        IPage<SpuImagesEntity> page = this.page(
-                new Query<SpuImagesEntity>().getPage(params),
-                new QueryWrapper<SpuImagesEntity>()
+        IPage<SkuImageEntity> page = this.page(
+                new Query<SkuImageEntity>().getPage(params),
+                new QueryWrapper<SkuImageEntity>()
         );
 
         return new PageVo(page);

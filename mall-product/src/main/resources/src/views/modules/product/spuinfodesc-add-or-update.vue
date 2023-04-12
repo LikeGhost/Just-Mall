@@ -39,7 +39,7 @@
           this.$refs['dataForm'].resetFields()
           if (this.dataForm.spuId) {
             this.$http({
-              url: this.$http.adornUrl(`/product/spuinfodesc/info/${this.dataForm.spuId}`),
+              url: this.$http.adornUrl(`/product/spu-info-detail/info/${this.dataForm.spuId}`),
               method: 'get',
               params: this.$http.adornParams()
             }).then(({data}) => {
@@ -55,7 +55,7 @@
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
             this.$http({
-              url: this.$http.adornUrl(`/product/spuinfodesc/${!this.dataForm.spuId ? 'save' : 'update'}`),
+              url: this.$http.adornUrl(`/product/spu-info-detail/${!this.dataForm.spuId ? 'save' : 'update'}`),
               method: 'post',
               data: this.$http.adornData({
                 'spuId': this.dataForm.spuId || undefined,

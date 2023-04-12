@@ -2,14 +2,13 @@ package com.likeghost.mall.product.controller;
 
 import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
-import com.likeghost.mall.product.pojo.entity.SkuImagesEntity;
-import com.likeghost.mall.product.service.SkuImagesService;
+import com.likeghost.mall.product.pojo.entity.SkuImageEntity;
+import com.likeghost.mall.product.service.SkuImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.Map;
-
 
 
 /**
@@ -21,16 +20,16 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("product/skuimages")
-public class SkuImagesController {
+public class SkuImageController {
     @Autowired
-    private SkuImagesService skuImagesService;
+    private SkuImageService skuImagesService;
 
     /**
      * 列表
      */
     @RequestMapping("/list")
     //@RequiresPermissions("product:skuimages:list")
-    public R list(@RequestParam Map<String, Object> params){
+    public R list(@RequestParam Map<String, Object> params) {
         PageVo page = skuImagesService.queryPage(params);
 
         return R.ok().put("page", page);
@@ -43,7 +42,7 @@ public class SkuImagesController {
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("product:skuimages:info")
     public R info(@PathVariable("id") Long id){
-		SkuImagesEntity skuImages = skuImagesService.getById(id);
+        SkuImageEntity skuImages = skuImagesService.getById(id);
 
         return R.ok().put("skuImages", skuImages);
     }
@@ -53,8 +52,8 @@ public class SkuImagesController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:skuimages:save")
-    public R save(@RequestBody SkuImagesEntity skuImages){
-		skuImagesService.save(skuImages);
+    public R save(@RequestBody SkuImageEntity skuImages) {
+        skuImagesService.save(skuImages);
 
         return R.ok();
     }
@@ -64,8 +63,8 @@ public class SkuImagesController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:skuimages:update")
-    public R update(@RequestBody SkuImagesEntity skuImages){
-		skuImagesService.updateById(skuImages);
+    public R update(@RequestBody SkuImageEntity skuImages) {
+        skuImagesService.updateById(skuImages);
 
         return R.ok();
     }

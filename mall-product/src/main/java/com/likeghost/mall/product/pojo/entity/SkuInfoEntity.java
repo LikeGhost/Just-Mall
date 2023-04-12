@@ -29,21 +29,21 @@ public class SkuInfoEntity implements Serializable {
 	 */
 	private Long spuId;
 	/**
-	 * sku名称
-	 */
-	private String skuName;
-	/**
-	 * sku介绍描述
-	 */
-	private String skuDesc;
-	/**
-	 * 所属分类id
-	 */
-	private Long catalogId;
-	/**
-	 * 品牌id
-	 */
-	private Long brandId;
+     * sku名称
+     */
+    private String skuName;
+    /**
+     * sku介绍描述
+     */
+    private String skuDescription;
+    /**
+     * 所属分类id
+     */
+    private Long catId;
+    /**
+     * 品牌id
+     */
+    private Long brandId;
 	/**
 	 * 默认图片
 	 */

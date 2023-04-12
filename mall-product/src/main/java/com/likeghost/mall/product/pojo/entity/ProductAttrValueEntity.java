@@ -40,12 +40,12 @@ public class ProductAttrValueEntity implements Serializable {
 	 */
 	private String attrValue;
 	/**
-	 * 顺序
-	 */
-	private Integer attrSort;
-	/**
-	 * 快速展示【是否展示在介绍上；0-否 1-是】
-	 */
-	private Integer quickShow;
+     * 顺序
+     */
+    private Integer attrSort;
+    /**
+     * 快速展示【是否展示在介绍上；0-否 1-是】
+     */
+    private Boolean quickShow;
 
 }

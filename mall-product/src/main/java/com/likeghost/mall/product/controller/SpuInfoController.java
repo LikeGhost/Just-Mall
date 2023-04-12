@@ -3,6 +3,7 @@ package com.likeghost.mall.product.controller;
 import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.product.pojo.entity.SpuInfoEntity;
+import com.likeghost.mall.product.pojo.vo.SpuInfoSaveVo;
 import com.likeghost.mall.product.service.SpuInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ import java.util.Map;
  * @date 2022-10-07 20:57:15
  */
 @RestController
-@RequestMapping("product/spuinfo")
+@RequestMapping("product/spu-info")
 public class SpuInfoController {
     @Autowired
     private SpuInfoService spuInfoService;
@@ -51,10 +52,10 @@ public class SpuInfoController {
     /**
      * 保存
      */
-    @RequestMapping("/save")
+    @PostMapping("/save")
     //@RequiresPermissions("product:spuinfo:save")
-    public R save(@RequestBody SpuInfoEntity spuInfo){
-		spuInfoService.save(spuInfo);
+    public R save(@RequestBody SpuInfoSaveVo spuInfoSaveVo) {
+        spuInfoService.save(spuInfoSaveVo);
 
         return R.ok();
     }

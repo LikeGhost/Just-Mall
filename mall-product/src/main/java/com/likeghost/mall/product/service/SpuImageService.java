@@ -2,19 +2,22 @@ package com.likeghost.mall.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.likeghost.common.pojo.vo.PageVo;
-import com.likeghost.mall.product.pojo.entity.SkuImagesEntity;
+import com.likeghost.mall.product.pojo.entity.SpuImageEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
- * sku图片
+ * spu图片
  *
  * @author LikeGhost
  * @email 1154083659@qq.com
  * @date 2022-10-07 20:57:15
  */
-public interface SkuImagesService extends IService<SkuImagesEntity> {
+public interface SpuImageService extends IService<SpuImageEntity> {
 
     PageVo queryPage(Map<String, Object> params);
+
+    boolean saveImages(Long id, List<String> images);
 }
 

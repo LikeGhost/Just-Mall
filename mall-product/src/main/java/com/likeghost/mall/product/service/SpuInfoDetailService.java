@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.mall.product.pojo.entity.SpuInfoDetailEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,5 +17,7 @@ import java.util.Map;
 public interface SpuInfoDetailService extends IService<SpuInfoDetailEntity> {
 
     PageVo queryPage(Map<String, Object> params);
+
+    boolean saveDetail(Long id, List<String> details);
 }
 
