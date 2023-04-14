@@ -14,6 +14,12 @@ spring:
     #热部署生效,默认就是true
     restart:
       enabled: true
+  mvc:
+    format:
+      date-time: yyyy-MM-dd HH:mm:ss
+#  jackson:
+#    time-zone: GMT+8
+#    date-format: yyyy-MM-dd HH:mm:ss
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml

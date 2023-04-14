@@ -12,7 +12,6 @@ import java.util.Arrays;
 import java.util.Map;
 
 
-
 /**
  * spu信息
  *
@@ -31,8 +30,10 @@ public class SpuInfoController {
      */
     @RequestMapping("/list")
     //@RequiresPermissions("product:spuinfo:list")
-    public R list(@RequestParam Map<String, Object> params){
-        PageVo page = spuInfoService.queryPage(params);
+    public R list(Long brandId, Long catId, Integer publishStatus, Map<String, Object> params) {
+
+
+        PageVo page = spuInfoService.queryPageByCondition(brandId, catId, publishStatus, params);
 
         return R.ok().put("page", page);
     }

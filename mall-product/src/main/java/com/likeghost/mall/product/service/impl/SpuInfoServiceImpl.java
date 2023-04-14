@@ -1,5 +1,6 @@
 package com.likeghost.mall.product.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -11,6 +12,8 @@ import com.likeghost.mall.product.pojo.vo.BaseAttrValue;
 import com.likeghost.mall.product.pojo.vo.Image;
 import com.likeghost.mall.product.pojo.vo.SpuInfoSaveVo;
 import com.likeghost.mall.product.service.*;
+import lombok.SneakyThrows;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +23,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-
+/**
+ * @author LikeGhost
+ * @date 2023/4/14 21:09
+ * @description
+ */
 @Service("spuInfoService")
 public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> implements SpuInfoService {
 
@@ -126,6 +133,39 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
 
 
         return true;
+    }
+
+    @SneakyThrows
+    @Override
+    public PageVo queryPageByCondition(Long brandId, Long catId, Integer publishStatus, Map<String, Object> params) {
+        LambdaQueryWrapper<SpuInfoEntity> queryWrapper = new LambdaQueryWrapper<>();
+
+
+        if (brandId != null) {
+            queryWrapper.eq(SpuInfoEntity::getBrandId, brandId);
+        }
+        if (catId != null && catId != 0) {
+            queryWrapper.eq(SpuInfoEntity::getCatId, catId);
+        }
+
+        if (publishStatus != null) {
+            queryWrapper.eq(SpuInfoEntity::getPublishStatus, publishStatus);
+        }
+
+        String key = (String) params.get("key");
+        if (!StringUtils.isEmpty(key)) {
+            queryWrapper.and(q -> q.like(SpuInfoEntity::getId, key)
+                    .or().like(SpuInfoEntity::getSpuName, key)
+                    .or().like(SpuInfoEntity::getSpuDescription, key));
+        }
+
+        IPage<SpuInfoEntity> page = this.page(
+                new Query<SpuInfoEntity>().getPage(params),
+                queryWrapper
+        );
+
+        return new PageVo(page);
+
     }
 
 }

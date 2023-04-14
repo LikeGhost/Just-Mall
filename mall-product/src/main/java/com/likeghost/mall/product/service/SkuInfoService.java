@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.mall.product.pojo.entity.SkuInfoEntity;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 /**
@@ -16,5 +17,7 @@ import java.util.Map;
 public interface SkuInfoService extends IService<SkuInfoEntity> {
 
     PageVo queryPage(Map<String, Object> params);
+
+    PageVo queryPageByCatId(Long catId, Long brandId, BigDecimal min, BigDecimal max, Map<String, Object> params);
 }
 

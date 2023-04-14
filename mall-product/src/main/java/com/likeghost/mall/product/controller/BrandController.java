@@ -3,10 +3,7 @@ package com.likeghost.mall.product.controller;
 import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.product.pojo.entity.BrandEntity;
-import com.likeghost.mall.product.feign.MinioService;
 import com.likeghost.mall.product.service.BrandService;
-import com.likeghost.mall.product.pojo.vo.BrandVo;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,13 +24,13 @@ public class BrandController {
     @Autowired
     private BrandService brandService;
 
-    @Autowired
-    private MinioService minioService;
+//    @Autowired
+//    private MinioService minioService;
 
     /**
      * 列表
      */
-    @RequestMapping("/list")
+    @GetMapping("/list")
     //@RequiresPermissions("product:brand:list")
     public R list(@RequestParam Map<String, Object> params) {
         PageVo page = brandService.queryPage(params);
@@ -43,6 +40,15 @@ public class BrandController {
 
     }
 
+    @GetMapping("/list/{catId}")
+    //@RequiresPermissions("product:brand:list")
+    public R list(@RequestParam Map<String, Object> params, @PathVariable Long catId) {
+        PageVo page = brandService.queryPageByCatId(params, catId);
+
+        return R.ok().put("page", page);
+
+
+    }
 
     /**
      * 信息
@@ -54,13 +60,13 @@ public class BrandController {
 
         HashMap<String, String> logo = new HashMap<>();
 
-        BrandVo brandVo = new BrandVo();
-        BeanUtils.copyProperties(brand, brandVo);
-        String filename = brand.getLogo();
-        logo.put("name", filename);
-        logo.put("url", (String) minioService.getPreSignedUrl(filename).get("preSignedUrl"));
-        brandVo.setLogo(logo);
-        return R.ok().put("brand", brandVo);
+//        BrandVo brandVo = new BrandVo();
+//        BeanUtils.copyProperties(brand, brandVo);
+//        String filename = brand.getLogo();
+//        logo.put("name", filename);
+//        logo.put("url", (String) minioService.getPreSignedUrl(filename).get("preSignedUrl"));
+//        brandVo.setLogo(logo);
+        return R.ok().put("brand", brand);
     }
 
     /**

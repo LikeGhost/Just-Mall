@@ -6,15 +6,17 @@
  * 版权所有，侵权必究！
  */
 
-package com.likeghost.common.utils;
+package com.likeghost.common.constant;
 
 /**
  * 常量
  *
  * @author Mark sunlightcs@gmail.com
  */
-public class Constant {
-    /** 超级管理员ID */
+public class SystemConstant {
+    /**
+     * 超级管理员ID
+     */
     public static final int SUPER_ADMIN = 1;
     /**
      * 当前页码

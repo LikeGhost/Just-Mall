@@ -113,12 +113,12 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         }
 
 //        if(!StringUtils.isEmpty(key)){
-//            queryWrapper.like(AttrEntity::getAttrName,"%"+key+"%");
+//            queryWrapper.like(AttrEntity::getAttrName,key);
 //        }
 
         if (attrType != null) {
-            ProductConstant.AttrType _attrType = ProductConstant.AttrType.valueOf(attrType.toUpperCase() + "_ATTR");
-            queryWrapper.eq(AttrEntity::getAttrType, _attrType.getCode());
+            ProductConstant.AttrType type = ProductConstant.AttrType.valueOf(attrType.toUpperCase() + "_ATTR");
+            queryWrapper.eq(AttrEntity::getAttrType, type.getCode());
         }
 
         IPage<AttrEntity> page = this.page(

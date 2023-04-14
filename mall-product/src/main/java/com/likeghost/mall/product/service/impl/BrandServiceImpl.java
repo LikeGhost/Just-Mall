@@ -5,10 +5,10 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.Query;
-import com.likeghost.mall.product.feign.MinioService;
 import com.likeghost.mall.product.pojo.dao.BrandDao;
 import com.likeghost.mall.product.pojo.entity.BrandEntity;
 import com.likeghost.mall.product.service.BrandService;
+import com.likeghost.mall.product.service.CategoryBrandRelationService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,8 +25,11 @@ import java.util.Map;
 @Service("brandService")
 public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> implements BrandService {
 
+//    @Autowired
+//    private MinioService minioService;
+
     @Autowired
-    private MinioService minioService;
+    private CategoryBrandRelationService categoryBrandRelationService;
 
 
     @Override
@@ -46,15 +49,26 @@ public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> impleme
         );
 
 
-        String endpoint = (String) minioService.getEndpoint().get("endpoint");
-
-        for (BrandEntity brand : page.getRecords()) {
-            String logo = brand.getLogo();
-            brand.setLogo(endpoint + "/" + logo);
-        }
+//        String endpoint = (String) minioService.getEndpoint().get("endpoint");
+//
+//        for (BrandEntity brand : page.getRecords()) {
+//            String logo = brand.getLogo();
+//            brand.setLogo(endpoint + "/" + logo);
+//        }
 
 
         return new PageVo(page);
+    }
+
+    @Override
+    public PageVo queryPageByCatId(Map<String, Object> params, Long catId) {
+        if (catId == null || catId == 0) {
+//            PageVo pageVo = this.queryPage(params);
+//            List<BrandEntity> list = (List<BrandEntity>) pageVo.getList();
+            return this.queryPage(params);
+        } else {
+            return categoryBrandRelationService.queryPageByCatId(params, catId);
+        }
     }
 
 

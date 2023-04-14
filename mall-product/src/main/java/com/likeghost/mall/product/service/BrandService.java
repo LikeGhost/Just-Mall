@@ -16,5 +16,6 @@ public interface BrandService extends IService<BrandEntity> {
 
     PageVo queryPage(Map<String, Object> params);
 
+    PageVo queryPageByCatId(Map<String, Object> params, Long catId);
 }
 

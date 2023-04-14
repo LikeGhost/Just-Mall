@@ -1,4 +1,4 @@
-package com.likeghost.mall.product.config;
+package com.likeghost.common.config;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@MapperScan("com.likeghost.mall.product.pojo.dao")
+@MapperScan("com.likeghost.mall.*.pojo.dao")
 public class MybatisPlusConfig {
 
     @Bean
