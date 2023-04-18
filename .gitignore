@@ -24,3 +24,6 @@ buildNumber.properties
 /nacos/
 /minio/
 /mall.iml
+**/logs/
+**.log
+
