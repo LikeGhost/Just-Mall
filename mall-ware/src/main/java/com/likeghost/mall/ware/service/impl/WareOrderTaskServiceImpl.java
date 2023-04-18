@@ -5,13 +5,18 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.Query;
-import com.likeghost.mall.ware.dao.WareOrderTaskDao;
-import com.likeghost.mall.ware.entity.WareOrderTaskEntity;
+import com.likeghost.mall.ware.pojo.dao.WareOrderTaskDao;
+import com.likeghost.mall.ware.pojo.entity.WareOrderTaskEntity;
 import com.likeghost.mall.ware.service.WareOrderTaskService;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+/**
+ * @author LikeGhost
+ * @date 2023/4/18 17:15
+ * @description
+ */
 
 @Service("wareOrderTaskService")
 public class WareOrderTaskServiceImpl extends ServiceImpl<WareOrderTaskDao, WareOrderTaskEntity> implements WareOrderTaskService {

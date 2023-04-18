@@ -3,8 +3,10 @@ package com.likeghost.mall.product.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.mall.product.pojo.entity.AttrEntity;
+import com.likeghost.mall.product.pojo.entity.ProductAttrValueEntity;
 import com.likeghost.mall.product.pojo.vo.AttrVo;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,5 +32,9 @@ public interface AttrService extends IService<AttrEntity> {
     Boolean saveOrUpdate(AttrVo attr);
 
     PageVo queryPageByAttrTypeAndCatId(Map<String, Object> params, String attrType, Long catId);
+
+    List<ProductAttrValueEntity> listBySpuId(Long spuId);
+
+    boolean updateBaseAttrValues(Long spuId, List<ProductAttrValueEntity> baseAttrValues);
 }
 

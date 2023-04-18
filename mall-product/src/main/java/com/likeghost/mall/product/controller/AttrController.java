@@ -2,12 +2,14 @@ package com.likeghost.mall.product.controller;
 
 import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
+import com.likeghost.mall.product.pojo.entity.ProductAttrValueEntity;
 import com.likeghost.mall.product.pojo.vo.AttrVo;
 import com.likeghost.mall.product.service.AttrService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 
@@ -38,7 +40,7 @@ public class AttrController {
 
     @GetMapping("/list/{catId}")
     //@RequiresPermissions("product:attr:list")
-    public R list(@RequestParam Map<String, Object> params, @PathVariable Long catId) {
+    public R listByCatId(@RequestParam Map<String, Object> params, @PathVariable Long catId) {
         PageVo page = attrService.queryPageByCatId(params, catId);
 
         return R.ok().put("page", page);
@@ -46,10 +48,24 @@ public class AttrController {
 
     @GetMapping("/{attrType}/list/{catId}")
     //@RequiresPermissions("product:attr:list")
-    public R list(@RequestParam Map<String, Object> params, @PathVariable String attrType, @PathVariable Long catId) {
+    public R listByAttrTypeAndCatId(@RequestParam Map<String, Object> params, @PathVariable String attrType, @PathVariable Long catId) {
         PageVo page = attrService.queryPageByAttrTypeAndCatId(params, attrType, catId);
 
         return R.ok().put("page", page);
+    }
+
+    @GetMapping("/list/spu/{spuId}")
+    public R listBySpuId(@PathVariable Long spuId) {
+        List<ProductAttrValueEntity> data = attrService.listBySpuId(spuId);
+
+        return R.ok().put("data", data);
+    }
+
+    @PostMapping("/update/{spuId}")
+    public R updateBaseAttrValues(@PathVariable Long spuId, @RequestBody List<ProductAttrValueEntity> baseAttrValues) {
+        attrService.updateBaseAttrValues(spuId, baseAttrValues);
+
+        return R.ok();
     }
 
     /**

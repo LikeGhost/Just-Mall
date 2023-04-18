@@ -2,12 +2,15 @@ package com.likeghost.mall.ware.controller;
 
 import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
-import com.likeghost.mall.ware.entity.PurchaseEntity;
+import com.likeghost.mall.ware.pojo.entity.PurchaseEntity;
+import com.likeghost.mall.ware.pojo.vo.CompletePurchasingVo;
+import com.likeghost.mall.ware.pojo.vo.MergeItemsVo;
 import com.likeghost.mall.ware.service.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 
@@ -28,12 +31,41 @@ public class PurchaseController {
     /**
      * 列表
      */
-    @RequestMapping("/list")
+    @GetMapping("/list")
     //@RequiresPermissions("ware:purchase:list")
-    public R list(@RequestParam Map<String, Object> params){
-        PageVo page = purchaseService.queryPage(params);
+    public R list(@RequestParam Map<String, Object> params, Integer status) {
+        PageVo page = purchaseService.queryPageByConditions(params, status);
 
         return R.ok().put("page", page);
+    }
+
+    @GetMapping("/unreceived/list")
+    public R unreceivedList(@RequestParam Map<String, Object> params) {
+        PageVo page = purchaseService.queryUnreceivedPage(params);
+
+        return R.ok().put("page", page);
+    }
+
+    @PostMapping("/merge")
+    public R mergeItems(@RequestBody MergeItemsVo mergeItemsVo) {
+
+        purchaseService.mergeItems(mergeItemsVo);
+
+        return R.ok();
+    }
+
+    @PostMapping("/received")
+    public R receivedPurchasing(@RequestBody List<Long> purchaseIds) {
+        purchaseService.receivedPurchasing(purchaseIds);
+
+        return R.ok();
+    }
+
+    @PostMapping("/complete")
+    public R completePurchasing(@RequestBody CompletePurchasingVo completePurchasingVo) {
+        purchaseService.completePurchasing(completePurchasingVo);
+
+        return R.ok();
     }
 
 
@@ -42,8 +74,8 @@ public class PurchaseController {
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("ware:purchase:info")
-    public R info(@PathVariable("id") Long id){
-		PurchaseEntity purchase = purchaseService.getById(id);
+    public R info(@PathVariable("id") Long id) {
+        PurchaseEntity purchase = purchaseService.getById(id);
 
         return R.ok().put("purchase", purchase);
     }

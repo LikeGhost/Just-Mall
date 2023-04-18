@@ -2,7 +2,7 @@ package com.likeghost.mall.ware.controller;
 
 import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
-import com.likeghost.mall.ware.entity.PurchaseDetailEntity;
+import com.likeghost.mall.ware.pojo.entity.PurchaseDetailEntity;
 import com.likeghost.mall.ware.service.PurchaseDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,16 +11,13 @@ import java.util.Arrays;
 import java.util.Map;
 
 
-
 /**
- * 
- *
  * @author LikeGhost
- * @email 1154083659@qq.com
- * @date 2022-10-07 21:01:41
+ * @date 2023/4/16 23:58
+ * @description
  */
 @RestController
-@RequestMapping("ware/purchasedetail")
+@RequestMapping("ware/purchase-detail")
 public class PurchaseDetailController {
     @Autowired
     private PurchaseDetailService purchaseDetailService;
@@ -30,8 +27,8 @@ public class PurchaseDetailController {
      */
     @RequestMapping("/list")
     //@RequiresPermissions("ware:purchasedetail:list")
-    public R list(@RequestParam Map<String, Object> params){
-        PageVo page = purchaseDetailService.queryPage(params);
+    public R list(@RequestParam Map<String, Object> params, Integer status, Long wareId) {
+        PageVo page = purchaseDetailService.queryPageByConditions(status, wareId, params);
 
         return R.ok().put("page", page);
     }

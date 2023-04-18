@@ -2,7 +2,7 @@ package com.likeghost.mall.ware.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.likeghost.common.pojo.vo.PageVo;
-import com.likeghost.mall.ware.entity.WareInfoEntity;
+import com.likeghost.mall.ware.pojo.entity.WareInfoEntity;
 
 import java.util.Map;
 

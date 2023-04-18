@@ -2,8 +2,11 @@ package com.likeghost.mall.ware.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.likeghost.common.pojo.vo.PageVo;
-import com.likeghost.mall.ware.entity.PurchaseEntity;
+import com.likeghost.mall.ware.pojo.entity.PurchaseEntity;
+import com.likeghost.mall.ware.pojo.vo.CompletePurchasingVo;
+import com.likeghost.mall.ware.pojo.vo.MergeItemsVo;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,5 +19,16 @@ import java.util.Map;
 public interface PurchaseService extends IService<PurchaseEntity> {
 
     PageVo queryPage(Map<String, Object> params);
+
+
+    PageVo queryPageByConditions(Map<String, Object> params, Integer status);
+
+    PageVo queryUnreceivedPage(Map<String, Object> params);
+
+    boolean mergeItems(MergeItemsVo mergeItemsVo);
+
+    boolean receivedPurchasing(List<Long> purchaseIds);
+
+    boolean completePurchasing(CompletePurchasingVo completePurchasingVo);
 }
 

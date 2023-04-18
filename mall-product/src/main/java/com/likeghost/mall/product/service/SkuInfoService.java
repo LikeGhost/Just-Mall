@@ -18,6 +18,6 @@ public interface SkuInfoService extends IService<SkuInfoEntity> {
 
     PageVo queryPage(Map<String, Object> params);
 
-    PageVo queryPageByCatId(Long catId, Long brandId, BigDecimal min, BigDecimal max, Map<String, Object> params);
+    PageVo queryPageByConditions(Long catId, Long brandId, BigDecimal min, BigDecimal max, Map<String, Object> params);
 }
 

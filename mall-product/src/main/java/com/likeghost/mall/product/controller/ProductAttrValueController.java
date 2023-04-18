@@ -20,7 +20,7 @@ import java.util.Map;
  * @date 2022-10-07 20:57:15
  */
 @RestController
-@RequestMapping("product/productattrvalue")
+@RequestMapping("product/product-attr-value")
 public class ProductAttrValueController {
     @Autowired
     private ProductAttrValueService productAttrValueService;

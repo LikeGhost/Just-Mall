@@ -2,7 +2,7 @@ package com.likeghost.mall.ware.controller;
 
 import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
-import com.likeghost.mall.ware.entity.WareInfoEntity;
+import com.likeghost.mall.ware.pojo.entity.WareInfoEntity;
 import com.likeghost.mall.ware.service.WareInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,7 @@ import java.util.Map;
  * @date 2022-10-07 21:01:41
  */
 @RestController
-@RequestMapping("ware/wareinfo")
+@RequestMapping("ware/ware-info")
 public class WareInfoController {
     @Autowired
     private WareInfoService wareInfoService;

@@ -20,6 +20,6 @@ public interface SpuInfoService extends IService<SpuInfoEntity> {
 
     boolean save(SpuInfoSaveVo spuInfo);
 
-    PageVo queryPageByCondition(Long brandId, Long catId, Integer publishStatus, Map<String, Object> params);
+    PageVo queryPageByConditions(Long brandId, Long catId, Integer publishStatus, Map<String, Object> params);
 }
 

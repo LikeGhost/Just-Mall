@@ -2,7 +2,7 @@ package com.likeghost.mall.ware.controller;
 
 import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.R;
-import com.likeghost.mall.ware.entity.WareSkuEntity;
+import com.likeghost.mall.ware.pojo.entity.WareSkuEntity;
 import com.likeghost.mall.ware.service.WareSkuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,7 @@ import java.util.Map;
  * @date 2022-10-07 21:01:41
  */
 @RestController
-@RequestMapping("ware/waresku")
+@RequestMapping("ware/ware-sku")
 public class WareSkuController {
     @Autowired
     private WareSkuService wareSkuService;
@@ -30,8 +30,8 @@ public class WareSkuController {
      */
     @RequestMapping("/list")
     //@RequiresPermissions("ware:waresku:list")
-    public R list(@RequestParam Map<String, Object> params){
-        PageVo page = wareSkuService.queryPage(params);
+    public R list(@RequestParam Map<String, Object> params, Long skuId, Long wareId) {
+        PageVo page = wareSkuService.queryPageByConditions(skuId, wareId, params);
 
         return R.ok().put("page", page);
     }

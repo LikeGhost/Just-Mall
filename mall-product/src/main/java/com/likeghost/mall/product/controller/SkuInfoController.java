@@ -5,10 +5,7 @@ import com.likeghost.common.utils.R;
 import com.likeghost.mall.product.pojo.entity.SkuInfoEntity;
 import com.likeghost.mall.product.service.SkuInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -34,8 +31,8 @@ public class SkuInfoController {
      */
     @RequestMapping("/list")
     //@RequiresPermissions("product:skuinfo:list")
-    public R list(Long catId, Long brandId, BigDecimal min, BigDecimal max, Map<String, Object> params) {
-        PageVo page = skuInfoService.queryPageByCatId(catId, brandId, min, max, params);
+    public R list(@RequestParam Map<String, Object> params, Long catId, Long brandId, BigDecimal min, BigDecimal max) {
+        PageVo page = skuInfoService.queryPageByConditions(catId, brandId, min, max, params);
 
         return R.ok().put("page", page);
     }

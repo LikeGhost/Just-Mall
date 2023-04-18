@@ -137,7 +137,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
 
     @SneakyThrows
     @Override
-    public PageVo queryPageByCondition(Long brandId, Long catId, Integer publishStatus, Map<String, Object> params) {
+    public PageVo queryPageByConditions(Long brandId, Long catId, Integer publishStatus, Map<String, Object> params) {
         LambdaQueryWrapper<SpuInfoEntity> queryWrapper = new LambdaQueryWrapper<>();
 
 

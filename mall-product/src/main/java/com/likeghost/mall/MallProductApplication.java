@@ -12,8 +12,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  */
 
 
-@SpringBootApplication(scanBasePackages = {"com.likeghost.mall.product", "com.likeghost.common.config"})
-//@ComponentScan({"com.likeghost.mall.product","com.likeghost.common.config"})
+//@SpringBootApplication(scanBasePackages = {"com.likeghost.mall.product", "com.likeghost.common.config"})
+@SpringBootApplication(scanBasePackages = {"com.likeghost.*"})
+
 @EnableDiscoveryClient
 @EnableFeignClients
 public class MallProductApplication {

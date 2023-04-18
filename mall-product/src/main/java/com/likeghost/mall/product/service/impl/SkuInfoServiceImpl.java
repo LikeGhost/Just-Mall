@@ -35,7 +35,7 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
     }
 
     @Override
-    public PageVo queryPageByCatId(Long catId, Long brandId, BigDecimal min, BigDecimal max, Map<String, Object> params) {
+    public PageVo queryPageByConditions(Long catId, Long brandId, BigDecimal min, BigDecimal max, Map<String, Object> params) {
         LambdaQueryWrapper<SkuInfoEntity> queryWrapper = new LambdaQueryWrapper<>();
 
 

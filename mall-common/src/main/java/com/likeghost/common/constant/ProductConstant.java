@@ -7,13 +7,12 @@ package com.likeghost.common.constant;
  * @description
  */
 public class ProductConstant {
-    /**
-     * @author LikeGhost
-     * @version 1.0
-     * @date 2023/4/8 15:17
-     * @description
-     */
+
+
     public enum AttrType {
+        /**
+         * 商品属性类型
+         */
         BASE_ATTR(0, "基本属性"), SALE_ATTR(1, "销售属性");
 
 

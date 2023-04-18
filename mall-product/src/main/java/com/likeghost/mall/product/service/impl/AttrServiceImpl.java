@@ -10,14 +10,12 @@ import com.likeghost.common.pojo.vo.PageVo;
 import com.likeghost.common.utils.Query;
 import com.likeghost.mall.product.pojo.dao.AttrDao;
 import com.likeghost.mall.product.pojo.dao.AttrGroupDao;
-import com.likeghost.mall.product.pojo.entity.AttrAttrGroupRelationEntity;
-import com.likeghost.mall.product.pojo.entity.AttrEntity;
-import com.likeghost.mall.product.pojo.entity.AttrGroupEntity;
-import com.likeghost.mall.product.pojo.entity.CategoryEntity;
+import com.likeghost.mall.product.pojo.entity.*;
 import com.likeghost.mall.product.pojo.vo.AttrVo;
 import com.likeghost.mall.product.service.AttrAttrGroupRelationService;
 import com.likeghost.mall.product.service.AttrService;
 import com.likeghost.mall.product.service.CategoryService;
+import com.likeghost.mall.product.service.ProductAttrValueService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +47,9 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private ProductAttrValueService productAttrValueService;
 
     @Override
     public PageVo queryPageByCatId(Map<String, Object> params) {
@@ -145,6 +146,30 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         PageVo pageVo = new PageVo(page);
 //        pageVo.setList(attrVoList);
         return pageVo;
+    }
+
+    @Override
+    public List<ProductAttrValueEntity> listBySpuId(Long spuId) {
+
+
+        return productAttrValueService.list(new LambdaQueryWrapper<ProductAttrValueEntity>()
+                .eq(ProductAttrValueEntity::getSpuId, spuId)
+        );
+    }
+
+    @Transactional
+    @Override
+    public boolean updateBaseAttrValues(Long spuId, List<ProductAttrValueEntity> baseAttrValues) {
+        boolean result = true;
+        result = result && productAttrValueService.remove(new LambdaQueryWrapper<ProductAttrValueEntity>()
+                .eq(ProductAttrValueEntity::getSpuId, spuId));
+
+        List<ProductAttrValueEntity> collect = baseAttrValues.stream().peek(baseAttrValue -> {
+            baseAttrValue.setSpuId(spuId);
+        }).collect(Collectors.toList());
+
+        result = result && productAttrValueService.saveBatch(collect);
+        return result;
     }
 
     @Override
