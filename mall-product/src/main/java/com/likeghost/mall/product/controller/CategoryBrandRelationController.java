@@ -1,6 +1,6 @@
 package com.likeghost.mall.product.controller;
 
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.product.pojo.entity.CategoryBrandRelationEntity;
 import com.likeghost.mall.product.service.CategoryBrandRelationService;
@@ -31,7 +31,7 @@ public class CategoryBrandRelationController {
     @GetMapping("/list")
     //@RequiresPermissions("product:categorybrandrelation:list")
     public R list(@RequestParam Map<String, Object> params) {
-        PageVo page = categoryBrandRelationService.queryPageByBrandId(params);
+        PageVO page = categoryBrandRelationService.queryPageByBrandId(params);
 
         return R.ok().put("page", page);
     }
@@ -39,7 +39,7 @@ public class CategoryBrandRelationController {
     @GetMapping("/list/brand/{brandId}")
     //@RequiresPermissions("product:categorybrandrelation:list")
     public R listByBrandId(@RequestParam Map<String, Object> params, @PathVariable Long brandId) {
-        PageVo page = categoryBrandRelationService.queryPageByBrandId(params, brandId);
+        PageVO page = categoryBrandRelationService.queryPageByBrandId(params, brandId);
 
         return R.ok().put("page", page);
     }
@@ -47,7 +47,7 @@ public class CategoryBrandRelationController {
     @GetMapping("/list/cat/{catId}")
     //@RequiresPermissions("product:categorybrandrelation:list")
     public R listByCatId(@RequestParam Map<String, Object> params, @PathVariable Long catId) {
-        PageVo page = categoryBrandRelationService.queryPageByCatId(params, catId);
+        PageVO page = categoryBrandRelationService.queryPageByCatId(params, catId);
 
         return R.ok().put("page", page);
     }

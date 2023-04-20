@@ -1,7 +1,7 @@
 package com.likeghost.mall.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.mall.product.pojo.entity.AttrAttrGroupRelationEntity;
 
 import java.util.Map;
@@ -15,8 +15,8 @@ import java.util.Map;
  */
 public interface AttrAttrGroupRelationService extends IService<AttrAttrGroupRelationEntity> {
 
-    PageVo queryPage(Map<String, Object> params);
+    PageVO queryPage(Map<String, Object> params);
 
-    PageVo queryPage(Map<String, Object> params, Long attrId);
+    PageVO queryPage(Map<String, Object> params, Long attrId);
 }
 

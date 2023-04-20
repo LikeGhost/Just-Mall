@@ -1,0 +1,40 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  application:
+    name: mall-search
+  devtools:
+    #热部署生效,默认就是true
+    restart:
+      enabled: true
+  mvc:
+    format:
+      date-time: yyyy-MM-dd HH:mm:ss
+
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
+server:
+  port: 20000
+logging:
+  level:
+    com.likeghost.mall.search.dao: debug
+    org.springframework.web: debug
+
+
+elasticsearch:
+  host: localhost
+  port: 9200
+  scheme: http

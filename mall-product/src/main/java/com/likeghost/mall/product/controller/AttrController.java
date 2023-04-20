@@ -1,9 +1,9 @@
 package com.likeghost.mall.product.controller;
 
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.product.pojo.entity.ProductAttrValueEntity;
-import com.likeghost.mall.product.pojo.vo.AttrVo;
+import com.likeghost.mall.product.pojo.vo.AttrVO;
 import com.likeghost.mall.product.service.AttrService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +33,7 @@ public class AttrController {
     @RequestMapping("/list")
     //@RequiresPermissions("product:attr:list")
     public R list(@RequestParam Map<String, Object> params) {
-        PageVo page = attrService.queryPageByCatId(params);
+        PageVO page = attrService.queryPageByCatId(params);
 
         return R.ok().put("page", page);
     }
@@ -41,7 +41,7 @@ public class AttrController {
     @GetMapping("/list/{catId}")
     //@RequiresPermissions("product:attr:list")
     public R listByCatId(@RequestParam Map<String, Object> params, @PathVariable Long catId) {
-        PageVo page = attrService.queryPageByCatId(params, catId);
+        PageVO page = attrService.queryPageByCatId(params, catId);
 
         return R.ok().put("page", page);
     }
@@ -49,7 +49,7 @@ public class AttrController {
     @GetMapping("/{attrType}/list/{catId}")
     //@RequiresPermissions("product:attr:list")
     public R listByAttrTypeAndCatId(@RequestParam Map<String, Object> params, @PathVariable String attrType, @PathVariable Long catId) {
-        PageVo page = attrService.queryPageByAttrTypeAndCatId(params, attrType, catId);
+        PageVO page = attrService.queryPageByAttrTypeAndCatId(params, attrType, catId);
 
         return R.ok().put("page", page);
     }
@@ -74,7 +74,7 @@ public class AttrController {
     @RequestMapping("/info/{attrId}")
     //@RequiresPermissions("product:attr:info")
     public R info(@PathVariable("attrId") Long attrId) {
-        AttrVo attr = attrService.getAttrInfo(attrId);
+        AttrVO attr = attrService.getAttrInfo(attrId);
 
 
         return R.ok().put("attr", attr);
@@ -85,7 +85,7 @@ public class AttrController {
      */
     @PostMapping("/save")
     //@RequiresPermissions("product:attr:save")
-    public R save(@RequestBody AttrVo attr) {
+    public R save(@RequestBody AttrVO attr) {
         attrService.saveOrUpdate(attr);
 
         return R.ok();
@@ -96,7 +96,7 @@ public class AttrController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:attr:update")
-    public R update(@RequestBody AttrVo attr) {
+    public R update(@RequestBody AttrVO attr) {
         attrService.saveOrUpdate(attr);
 
         return R.ok();

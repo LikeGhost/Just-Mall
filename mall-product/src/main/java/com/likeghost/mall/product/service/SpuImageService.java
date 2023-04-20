@@ -1,7 +1,7 @@
 package com.likeghost.mall.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.mall.product.pojo.entity.SpuImageEntity;
 
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public interface SpuImageService extends IService<SpuImageEntity> {
 
-    PageVo queryPage(Map<String, Object> params);
+    PageVO queryPage(Map<String, Object> params);
 
     boolean saveImages(Long id, List<String> images);
 }

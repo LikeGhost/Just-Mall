@@ -1,9 +1,9 @@
 package com.likeghost.mall.product.controller;
 
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.product.pojo.entity.AttrGroupEntity;
-import com.likeghost.mall.product.pojo.vo.AttrGroupWithAttrsVo;
+import com.likeghost.mall.product.pojo.vo.AttrGroupWithAttrsVO;
 import com.likeghost.mall.product.service.AttrGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +33,7 @@ public class AttrGroupController {
      */
     @GetMapping("/list-with-attr/{catId}")
     public R list(@PathVariable Long catId) {
-        List<AttrGroupWithAttrsVo> listWithAttrs = attrGroupService.getListWithAttrs(catId);
+        List<AttrGroupWithAttrsVO> listWithAttrs = attrGroupService.getListWithAttrs(catId);
 
         return R.ok().put("data", listWithAttrs);
     }
@@ -44,7 +44,7 @@ public class AttrGroupController {
     @RequestMapping("/list")
     //@RequiresPermissions("product:attrgroup:list")
     public R list(@RequestParam Map<String, Object> params) {
-        PageVo page = attrGroupService.queryPage(params);
+        PageVO page = attrGroupService.queryPage(params);
 
         return R.ok().put("page", page);
     }
@@ -55,7 +55,7 @@ public class AttrGroupController {
     @GetMapping("/list/{catId}")
     //@RequiresPermissions("product:attrgroup:list")
     public R list(@RequestParam Map<String, Object> params, @PathVariable Long catId) {
-        PageVo page = attrGroupService.queryPage(params, catId);
+        PageVO page = attrGroupService.queryPage(params, catId);
 
         return R.ok().put("page", page);
     }

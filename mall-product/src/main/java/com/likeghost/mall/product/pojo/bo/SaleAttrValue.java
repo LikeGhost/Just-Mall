@@ -1,11 +1,11 @@
-
-package com.likeghost.mall.product.pojo.vo;
+package com.likeghost.mall.product.pojo.bo;
 
 import lombok.Data;
 
 /**
  * @author LikeGhost
- * @date 2023/4/11 20:08
+ * @version 1.0
+ * @date 2023/4/19 23:53
  * @description
  */
 @Data

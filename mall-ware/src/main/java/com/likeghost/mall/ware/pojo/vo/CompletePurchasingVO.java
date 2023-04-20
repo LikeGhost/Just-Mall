@@ -12,7 +12,7 @@ import java.util.List;
  * @description
  */
 @Data
-public class CompletePurchasingVo {
+public class CompletePurchasingVO {
 
 
     private Long purchaseId;

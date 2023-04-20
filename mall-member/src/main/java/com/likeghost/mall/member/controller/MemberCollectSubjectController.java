@@ -1,6 +1,6 @@
 package com.likeghost.mall.member.controller;
 
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.member.entity.MemberCollectSubjectEntity;
 import com.likeghost.mall.member.service.MemberCollectSubjectService;
@@ -31,7 +31,7 @@ public class MemberCollectSubjectController {
     @RequestMapping("/list")
     //@RequiresPermissions("member:membercollectsubject:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageVo page = memberCollectSubjectService.queryPage(params);
+        PageVO page = memberCollectSubjectService.queryPage(params);
 
         return R.ok().put("page", page);
     }

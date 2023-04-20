@@ -41,4 +41,37 @@ public class ProductConstant {
             this.type = type;
         }
     }
+
+    public enum PublishStatus {
+        /**
+         * SPU状态
+         */
+        NEW(0, "新建"), ON_SALE(1, "上架"), OFF_SALE(2, "下架");
+
+
+        private int code;
+        private String status;
+
+        PublishStatus(int code, String status) {
+            this.code = code;
+            this.status = status;
+        }
+
+
+        public int getCode() {
+            return code;
+        }
+
+        public void setCode(int code) {
+            this.code = code;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
+        }
+    }
 }

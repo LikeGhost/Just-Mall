@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.Query;
 import com.likeghost.mall.product.pojo.dao.AttrAttrGroupRelationDao;
 import com.likeghost.mall.product.pojo.entity.AttrAttrGroupRelationEntity;
@@ -23,17 +23,17 @@ import java.util.Map;
 public class AttrAttrGroupRelationServiceImpl extends ServiceImpl<AttrAttrGroupRelationDao, AttrAttrGroupRelationEntity> implements AttrAttrGroupRelationService {
 
     @Override
-    public PageVo queryPage(Map<String, Object> params) {
+    public PageVO queryPage(Map<String, Object> params) {
         IPage<AttrAttrGroupRelationEntity> page = this.page(
                 new Query<AttrAttrGroupRelationEntity>().getPage(params),
                 new QueryWrapper<AttrAttrGroupRelationEntity>()
         );
 
-        return new PageVo(page);
+        return new PageVO(page);
     }
 
     @Override
-    public PageVo queryPage(Map<String, Object> params, Long attrId) {
+    public PageVO queryPage(Map<String, Object> params, Long attrId) {
 
         String key = (String) params.get("key");
 
@@ -49,7 +49,7 @@ public class AttrAttrGroupRelationServiceImpl extends ServiceImpl<AttrAttrGroupR
                 queryWrapper
         );
 
-        return new PageVo(page);
+        return new PageVO(page);
     }
 
 }

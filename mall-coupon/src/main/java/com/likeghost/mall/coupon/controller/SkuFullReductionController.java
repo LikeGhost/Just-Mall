@@ -1,6 +1,6 @@
 package com.likeghost.mall.coupon.controller;
 
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.coupon.entity.SkuFullReductionEntity;
 import com.likeghost.mall.coupon.service.SkuFullReductionService;
@@ -31,7 +31,7 @@ public class SkuFullReductionController {
     @RequestMapping("/list")
     //@RequiresPermissions("coupon:skufullreduction:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageVo page = skuFullReductionService.queryPage(params);
+        PageVO page = skuFullReductionService.queryPage(params);
 
         return R.ok().put("page", page);
     }

@@ -1,7 +1,7 @@
 package com.likeghost.mall.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.mall.product.pojo.entity.BrandEntity;
 
 import java.util.Map;
@@ -14,8 +14,8 @@ import java.util.Map;
  */
 public interface BrandService extends IService<BrandEntity> {
 
-    PageVo queryPage(Map<String, Object> params);
+    PageVO queryPage(Map<String, Object> params);
 
-    PageVo queryPageByCatId(Map<String, Object> params, Long catId);
+    PageVO queryPageByCatId(Map<String, Object> params, Long catId);
 }
 

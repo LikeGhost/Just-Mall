@@ -12,19 +12,30 @@ import java.util.List;
  * @description
  */
 @Data
-public class SpuInfoSaveVo {
+public class SpuInfoSaveVO {
 
     private String spuName;
     private String spuDescription;
     private Long catId;
     private Long brandId;
     private BigDecimal weight;
-    private int publishStatus;
+    private Integer publishStatus;
     private List<String> detail;
     private List<String> images;
     private Bounds bounds;
     private List<BaseAttrValue> baseAttrs;
-    private List<Sku> skus;
+    private List<SkuSaveVO> skus;
 
+
+    @Data
+    public class BaseAttrValue {
+
+        private Long attrId;
+        private String attrValue;
+        private String attrName;
+        private boolean quickShow;
+
+
+    }
 
 }

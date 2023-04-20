@@ -3,7 +3,7 @@ package com.likeghost.mall.coupon.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.Query;
 import com.likeghost.mall.coupon.dao.CouponDao;
 import com.likeghost.mall.coupon.entity.CouponEntity;
@@ -17,13 +17,13 @@ import java.util.Map;
 public class CouponServiceImpl extends ServiceImpl<CouponDao, CouponEntity> implements CouponService {
 
     @Override
-    public PageVo queryPage(Map<String, Object> params) {
+    public PageVO queryPage(Map<String, Object> params) {
         IPage<CouponEntity> page = this.page(
                 new Query<CouponEntity>().getPage(params),
                 new QueryWrapper<CouponEntity>()
         );
 
-        return new PageVo(page);
+        return new PageVO(page);
     }
 
 }

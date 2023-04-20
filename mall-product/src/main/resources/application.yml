@@ -39,4 +39,3 @@ logging:
   level:
     com.likeghost.mall.product.dao: debug
     org.springframework.web: debug
-

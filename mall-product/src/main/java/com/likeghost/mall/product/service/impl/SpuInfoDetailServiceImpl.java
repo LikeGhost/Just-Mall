@@ -3,7 +3,7 @@ package com.likeghost.mall.product.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.Query;
 import com.likeghost.mall.product.pojo.dao.SpuInfoDetailDao;
 import com.likeghost.mall.product.pojo.entity.SpuInfoDetailEntity;
@@ -23,13 +23,13 @@ import java.util.Map;
 public class SpuInfoDetailServiceImpl extends ServiceImpl<SpuInfoDetailDao, SpuInfoDetailEntity> implements SpuInfoDetailService {
 
     @Override
-    public PageVo queryPage(Map<String, Object> params) {
+    public PageVO queryPage(Map<String, Object> params) {
         IPage<SpuInfoDetailEntity> page = this.page(
                 new Query<SpuInfoDetailEntity>().getPage(params),
                 new QueryWrapper<SpuInfoDetailEntity>()
         );
 
-        return new PageVo(page);
+        return new PageVO(page);
     }
 
     @Override

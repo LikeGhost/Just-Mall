@@ -1,6 +1,6 @@
 package com.likeghost.mall.member.controller;
 
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.member.entity.IntegrationChangeHistoryEntity;
 import com.likeghost.mall.member.service.IntegrationChangeHistoryService;
@@ -31,7 +31,7 @@ public class IntegrationChangeHistoryController {
     @RequestMapping("/list")
     //@RequiresPermissions("member:integrationchangehistory:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageVo page = integrationChangeHistoryService.queryPage(params);
+        PageVO page = integrationChangeHistoryService.queryPage(params);
 
         return R.ok().put("page", page);
     }

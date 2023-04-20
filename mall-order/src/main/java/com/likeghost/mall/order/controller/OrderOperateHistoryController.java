@@ -1,6 +1,6 @@
 package com.likeghost.mall.order.controller;
 
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.order.entity.OrderOperateHistoryEntity;
 import com.likeghost.mall.order.service.OrderOperateHistoryService;
@@ -31,7 +31,7 @@ public class OrderOperateHistoryController {
     @RequestMapping("/list")
     //@RequiresPermissions("order:orderoperatehistory:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageVo page = orderOperateHistoryService.queryPage(params);
+        PageVO page = orderOperateHistoryService.queryPage(params);
 
         return R.ok().put("page", page);
     }

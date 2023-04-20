@@ -1,9 +1,9 @@
 package com.likeghost.mall.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.mall.product.pojo.entity.AttrGroupEntity;
-import com.likeghost.mall.product.pojo.vo.AttrGroupWithAttrsVo;
+import com.likeghost.mall.product.pojo.vo.AttrGroupWithAttrsVO;
 
 import java.util.List;
 import java.util.Map;
@@ -17,10 +17,10 @@ import java.util.Map;
  */
 public interface AttrGroupService extends IService<AttrGroupEntity> {
 
-    PageVo queryPage(Map<String, Object> params);
+    PageVO queryPage(Map<String, Object> params);
 
-    PageVo queryPage(Map<String, Object> params, Long catId);
+    PageVO queryPage(Map<String, Object> params, Long catId);
 
-    List<AttrGroupWithAttrsVo> getListWithAttrs(Long catId);
+    List<AttrGroupWithAttrsVO> getListWithAttrs(Long catId);
 }
 

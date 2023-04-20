@@ -3,7 +3,7 @@ package com.likeghost.mall.product.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.Query;
 import com.likeghost.mall.product.pojo.dao.BrandDao;
 import com.likeghost.mall.product.pojo.entity.BrandEntity;
@@ -33,7 +33,7 @@ public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> impleme
 
 
     @Override
-    public PageVo queryPage(Map<String, Object> params) {
+    public PageVO queryPage(Map<String, Object> params) {
         // TODO: 2023/3/27 sql like key 优化，like会全表扫描，使用substr或其他方法走索引会好点
         String key = (String) params.get("key");
         LambdaQueryWrapper<BrandEntity> queryWrapper = new LambdaQueryWrapper<>();
@@ -57,11 +57,11 @@ public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> impleme
 //        }
 
 
-        return new PageVo(page);
+        return new PageVO(page);
     }
 
     @Override
-    public PageVo queryPageByCatId(Map<String, Object> params, Long catId) {
+    public PageVO queryPageByCatId(Map<String, Object> params, Long catId) {
         if (catId == null || catId == 0) {
 //            PageVo pageVo = this.queryPage(params);
 //            List<BrandEntity> list = (List<BrandEntity>) pageVo.getList();

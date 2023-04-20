@@ -5,14 +5,14 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.likeghost.common.constant.WareConstant;
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.Query;
 import com.likeghost.mall.ware.pojo.dao.PurchaseDao;
 import com.likeghost.mall.ware.pojo.entity.PurchaseDetailEntity;
 import com.likeghost.mall.ware.pojo.entity.PurchaseEntity;
 import com.likeghost.mall.ware.pojo.entity.WareSkuEntity;
-import com.likeghost.mall.ware.pojo.vo.CompletePurchasingVo;
-import com.likeghost.mall.ware.pojo.vo.MergeItemsVo;
+import com.likeghost.mall.ware.pojo.vo.CompletePurchasingVO;
+import com.likeghost.mall.ware.pojo.vo.MergeItemsVO;
 import com.likeghost.mall.ware.service.PurchaseDetailService;
 import com.likeghost.mall.ware.service.PurchaseService;
 import com.likeghost.mall.ware.service.WareSkuService;
@@ -42,17 +42,17 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
 
 
     @Override
-    public PageVo queryPage(Map<String, Object> params) {
+    public PageVO queryPage(Map<String, Object> params) {
         IPage<PurchaseEntity> page = this.page(
                 new Query<PurchaseEntity>().getPage(params),
                 new QueryWrapper<PurchaseEntity>()
         );
 
-        return new PageVo(page);
+        return new PageVO(page);
     }
 
     @Override
-    public PageVo queryPageByConditions(Map<String, Object> params, Integer status) {
+    public PageVO queryPageByConditions(Map<String, Object> params, Integer status) {
         LambdaQueryWrapper<PurchaseEntity> queryWrapper = new LambdaQueryWrapper<>();
 
 
@@ -71,11 +71,11 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
                 new Query<PurchaseEntity>().getPage(params),
                 queryWrapper
         );
-        return new PageVo(page);
+        return new PageVO(page);
     }
 
     @Override
-    public PageVo queryUnreceivedPage(Map<String, Object> params) {
+    public PageVO queryUnreceivedPage(Map<String, Object> params) {
         LambdaQueryWrapper<PurchaseEntity> queryWrapper = new LambdaQueryWrapper<>();
 
         queryWrapper.eq(PurchaseEntity::getStatus, WareConstant.PurchaseDetailStatus.NEW.getCode())
@@ -85,12 +85,12 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
                 new Query<PurchaseEntity>().getPage(params),
                 queryWrapper
         );
-        return new PageVo(page);
+        return new PageVO(page);
     }
 
     @Override
     @Transactional
-    public boolean mergeItems(MergeItemsVo mergeItemsVo) {
+    public boolean mergeItems(MergeItemsVO mergeItemsVo) {
 
 
         boolean result = true;
@@ -158,7 +158,7 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
 
     @Override
     @Transactional
-    public boolean completePurchasing(CompletePurchasingVo completePurchasingVo) {
+    public boolean completePurchasing(CompletePurchasingVO completePurchasingVo) {
         boolean result = true;
         boolean isFailed = false;
 

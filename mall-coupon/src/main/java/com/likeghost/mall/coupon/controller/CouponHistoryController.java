@@ -1,6 +1,6 @@
 package com.likeghost.mall.coupon.controller;
 
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.coupon.entity.CouponHistoryEntity;
 import com.likeghost.mall.coupon.service.CouponHistoryService;
@@ -31,7 +31,7 @@ public class CouponHistoryController {
     @RequestMapping("/list")
     //@RequiresPermissions("coupon:couponhistory:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageVo page = couponHistoryService.queryPage(params);
+        PageVO page = couponHistoryService.queryPage(params);
 
         return R.ok().put("page", page);
     }

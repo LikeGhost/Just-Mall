@@ -1,9 +1,9 @@
 package com.likeghost.mall.product.controller;
 
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.product.pojo.entity.SpuInfoEntity;
-import com.likeghost.mall.product.pojo.vo.SpuInfoSaveVo;
+import com.likeghost.mall.product.pojo.vo.SpuInfoSaveVO;
 import com.likeghost.mall.product.service.SpuInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +33,7 @@ public class SpuInfoController {
     public R list(Long brandId, Long catId, Integer publishStatus, @RequestParam Map<String, Object> params) {
 
 
-        PageVo page = spuInfoService.queryPageByConditions(brandId, catId, publishStatus, params);
+        PageVO page = spuInfoService.queryPageByConditions(brandId, catId, publishStatus, params);
 
         return R.ok().put("page", page);
     }
@@ -55,7 +55,7 @@ public class SpuInfoController {
      */
     @PostMapping("/save")
     //@RequiresPermissions("product:spuinfo:save")
-    public R save(@RequestBody SpuInfoSaveVo spuInfoSaveVo) {
+    public R save(@RequestBody SpuInfoSaveVO spuInfoSaveVo) {
         spuInfoService.save(spuInfoSaveVo);
 
         return R.ok();
@@ -77,8 +77,16 @@ public class SpuInfoController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("product:spuinfo:delete")
-    public R delete(@RequestBody Long[] ids){
-		spuInfoService.removeByIds(Arrays.asList(ids));
+    public R delete(@RequestBody Long[] ids) {
+        spuInfoService.removeByIds(Arrays.asList(ids));
+
+        return R.ok();
+    }
+
+    @PostMapping("/put/{spuId}")
+    public R putSpu(@PathVariable Long spuId) {
+
+        spuInfoService.putSpu(spuId);
 
         return R.ok();
     }

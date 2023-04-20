@@ -1,6 +1,6 @@
 package com.likeghost.mall.product.controller;
 
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.product.pojo.entity.AttrAttrGroupRelationEntity;
 import com.likeghost.mall.product.service.AttrAttrGroupRelationService;
@@ -30,7 +30,7 @@ public class AttrAttrGroupRelationController {
     @RequestMapping("/list")
     //@RequiresPermissions("product:attrattrgrouprelation:list")
     public R list(@RequestParam Map<String, Object> params) {
-        PageVo page = attrAttrGroupRelationService.queryPage(params);
+        PageVO page = attrAttrGroupRelationService.queryPage(params);
 
         return R.ok().put("page", page);
     }
@@ -38,7 +38,7 @@ public class AttrAttrGroupRelationController {
     @GetMapping("/list/{attrId}")
     //@RequiresPermissions("product:attrattrgrouprelation:list")
     public R list(@RequestParam Map<String, Object> params, @PathVariable Long attrId) {
-        PageVo page = attrAttrGroupRelationService.queryPage(params, attrId);
+        PageVO page = attrAttrGroupRelationService.queryPage(params, attrId);
 
         return R.ok().put("page", page);
     }

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Component
 @FeignClient(value = "mall-third-party", path = "/minio")
-public interface MinioService {
+public interface MinioFeignService {
     @GetMapping("/presigned_url/{filepath}")
     R getPreSignedUrl(@PathVariable(name = "filepath") String filepath);
 

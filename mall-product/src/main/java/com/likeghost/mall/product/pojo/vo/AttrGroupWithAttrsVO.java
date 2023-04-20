@@ -13,7 +13,7 @@ import java.util.List;
  * @description
  */
 @Data
-public class AttrGroupWithAttrsVo {
+public class AttrGroupWithAttrsVO {
     /**
      * 分组id
      */

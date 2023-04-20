@@ -1,13 +1,15 @@
 package com.likeghost.mall.ware.controller;
 
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.R;
+import com.likeghost.mall.ware.pojo.dto.SkuStockDTO;
 import com.likeghost.mall.ware.pojo.entity.WareSkuEntity;
 import com.likeghost.mall.ware.service.WareSkuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 
@@ -28,10 +30,10 @@ public class WareSkuController {
     /**
      * 列表
      */
-    @RequestMapping("/list")
+    @GetMapping("/list")
     //@RequiresPermissions("ware:waresku:list")
     public R list(@RequestParam Map<String, Object> params, Long skuId, Long wareId) {
-        PageVo page = wareSkuService.queryPageByConditions(skuId, wareId, params);
+        PageVO page = wareSkuService.queryPageByConditions(skuId, wareId, params);
 
         return R.ok().put("page", page);
     }
@@ -75,10 +77,19 @@ public class WareSkuController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("ware:waresku:delete")
-    public R delete(@RequestBody Long[] ids){
-		wareSkuService.removeByIds(Arrays.asList(ids));
+    public R delete(@RequestBody Long[] ids) {
+        wareSkuService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
+    }
+
+
+    @PostMapping("/sku/stock")
+    public List<SkuStockDTO> getSkuStock(@RequestBody List<Long> skuIds) {
+
+        List<SkuStockDTO> skuStocks = wareSkuService.getSkuStock(skuIds);
+
+        return skuStocks;
     }
 
 }

@@ -19,24 +19,24 @@ import java.util.List;
  * @date 2022-10-07 20:57:15
  * @description 分页Vo类
  */
-public class PageVo implements Serializable {
+public class PageVO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	/**
 	 * 总记录数
 	 */
-	private int totalCount;
+	private Integer totalCount;
 	/**
 	 * 每页记录数
 	 */
-	private int pageSize;
+	private Integer pageSize;
 	/**
 	 * 总页数
 	 */
-	private int totalPage;
+	private Integer totalPage;
 	/**
 	 * 当前页数
 	 */
-	private int currPage;
+	private Integer currPage;
 	/**
 	 * 列表数据
 	 */
@@ -50,7 +50,7 @@ public class PageVo implements Serializable {
 	 * @param pageSize   每页记录数
 	 * @param currPage   当前页数
 	 */
-	public PageVo(List<?> list, int totalCount, int pageSize, int currPage) {
+	public PageVO(List<?> list, Integer totalCount, Integer pageSize, Integer currPage) {
 		this.list = list;
 		this.totalCount = totalCount;
 		this.pageSize = pageSize;
@@ -61,7 +61,7 @@ public class PageVo implements Serializable {
 	/**
 	 * 分页
 	 */
-	public PageVo(IPage<?> page) {
+	public PageVO(IPage<?> page) {
 		this.list = page.getRecords();
 		this.totalCount = (int) page.getTotal();
 		this.pageSize = (int) page.getSize();
@@ -69,35 +69,35 @@ public class PageVo implements Serializable {
 		this.totalPage = (int) page.getPages();
 	}
 
-	public int getTotalCount() {
+	public Integer getTotalCount() {
 		return totalCount;
 	}
 
-	public void setTotalCount(int totalCount) {
+	public void setTotalCount(Integer totalCount) {
 		this.totalCount = totalCount;
 	}
 
-	public int getPageSize() {
+	public Integer getPageSize() {
 		return pageSize;
 	}
 
-	public void setPageSize(int pageSize) {
+	public void setPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
 	}
 
-	public int getTotalPage() {
+	public Integer getTotalPage() {
 		return totalPage;
 	}
 
-	public void setTotalPage(int totalPage) {
+	public void setTotalPage(Integer totalPage) {
 		this.totalPage = totalPage;
 	}
 
-	public int getCurrPage() {
+	public Integer getCurrPage() {
 		return currPage;
 	}
 
-	public void setCurrPage(int currPage) {
+	public void setCurrPage(Integer currPage) {
 		this.currPage = currPage;
 	}
 
@@ -109,4 +109,15 @@ public class PageVo implements Serializable {
 		this.list = list;
 	}
 
+
+	@Override
+	public String toString() {
+		return "PageVO{" +
+				"totalCount=" + totalCount +
+				", pageSize=" + pageSize +
+				", totalPage=" + totalPage +
+				", currPage=" + currPage +
+				", list=" + list +
+				'}';
+	}
 }

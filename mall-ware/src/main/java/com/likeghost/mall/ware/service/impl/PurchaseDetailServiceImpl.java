@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.Query;
 import com.likeghost.mall.ware.pojo.dao.PurchaseDetailDao;
 import com.likeghost.mall.ware.pojo.entity.PurchaseDetailEntity;
@@ -23,17 +23,17 @@ import java.util.Map;
 public class PurchaseDetailServiceImpl extends ServiceImpl<PurchaseDetailDao, PurchaseDetailEntity> implements PurchaseDetailService {
 
     @Override
-    public PageVo queryPage(Map<String, Object> params) {
+    public PageVO queryPage(Map<String, Object> params) {
         IPage<PurchaseDetailEntity> page = this.page(
                 new Query<PurchaseDetailEntity>().getPage(params),
                 new QueryWrapper<PurchaseDetailEntity>()
         );
 
-        return new PageVo(page);
+        return new PageVO(page);
     }
 
     @Override
-    public PageVo queryPageByConditions(Integer status, Long wareId, Map<String, Object> params) {
+    public PageVO queryPageByConditions(Integer status, Long wareId, Map<String, Object> params) {
 
         LambdaQueryWrapper<PurchaseDetailEntity> queryWrapper = new LambdaQueryWrapper<PurchaseDetailEntity>();
 
@@ -55,7 +55,7 @@ public class PurchaseDetailServiceImpl extends ServiceImpl<PurchaseDetailDao, Pu
                 new Query<PurchaseDetailEntity>().getPage(params),
                 queryWrapper
         );
-        return new PageVo(page);
+        return new PageVO(page);
     }
 
 

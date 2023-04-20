@@ -12,6 +12,13 @@
         <result property="skuName" column="sku_name"/>
         <result property="stockLocked" column="stock_locked"/>
     </resultMap>
+    <select id="getSkuStock" resultType="com.likeghost.mall.ware.pojo.dto.SkuStockDTO">
+        select sku_id,sum(stock-stock_locked) stock from wms_ware_sku where sku_id in
+        <foreach collection="skuIds" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        GROUP BY sku_id
+    </select>
 
 
 </mapper>

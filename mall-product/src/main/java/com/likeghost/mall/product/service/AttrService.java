@@ -1,10 +1,10 @@
 package com.likeghost.mall.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.mall.product.pojo.entity.AttrEntity;
 import com.likeghost.mall.product.pojo.entity.ProductAttrValueEntity;
-import com.likeghost.mall.product.pojo.vo.AttrVo;
+import com.likeghost.mall.product.pojo.vo.AttrVO;
 
 import java.util.List;
 import java.util.Map;
@@ -18,20 +18,20 @@ import java.util.Map;
  */
 public interface AttrService extends IService<AttrEntity> {
 
-    PageVo queryPageByCatId(Map<String, Object> params);
+    PageVO queryPageByCatId(Map<String, Object> params);
 
-    PageVo queryPageByCatId(Map<String, Object> params, Long catId);
+    PageVO queryPageByCatId(Map<String, Object> params, Long catId);
 
 //    Boolean save(AttrVo attr);
 
-    AttrVo getAttrInfo(Long attrId);
+    AttrVO getAttrInfo(Long attrId);
 
 //    Boolean updateById(AttrVo attr);
 
 
-    Boolean saveOrUpdate(AttrVo attr);
+    Boolean saveOrUpdate(AttrVO attr);
 
-    PageVo queryPageByAttrTypeAndCatId(Map<String, Object> params, String attrType, Long catId);
+    PageVO queryPageByAttrTypeAndCatId(Map<String, Object> params, String attrType, Long catId);
 
     List<ProductAttrValueEntity> listBySpuId(Long spuId);
 

@@ -4,13 +4,13 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.Query;
 import com.likeghost.mall.product.pojo.dao.AttrGroupDao;
 import com.likeghost.mall.product.pojo.entity.AttrAttrGroupRelationEntity;
 import com.likeghost.mall.product.pojo.entity.AttrEntity;
 import com.likeghost.mall.product.pojo.entity.AttrGroupEntity;
-import com.likeghost.mall.product.pojo.vo.AttrGroupWithAttrsVo;
+import com.likeghost.mall.product.pojo.vo.AttrGroupWithAttrsVO;
 import com.likeghost.mall.product.service.AttrAttrGroupRelationService;
 import com.likeghost.mall.product.service.AttrGroupService;
 import com.likeghost.mall.product.service.AttrService;
@@ -40,18 +40,18 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
     AttrService attrService;
 
     @Override
-    public PageVo queryPage(Map<String, Object> params) {
+    public PageVO queryPage(Map<String, Object> params) {
         IPage<AttrGroupEntity> page = this.page(
                 new Query<AttrGroupEntity>().getPage(params),
                 new QueryWrapper<AttrGroupEntity>()
         );
 
 
-        return new PageVo(page);
+        return new PageVO(page);
     }
 
     @Override
-    public PageVo queryPage(Map<String, Object> params, Long catId) {
+    public PageVO queryPage(Map<String, Object> params, Long catId) {
         String key = (String) params.get("key");
 
         LambdaQueryWrapper<AttrGroupEntity> queryWrapper = new LambdaQueryWrapper<AttrGroupEntity>();
@@ -70,19 +70,19 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
         );
 
 
-        return new PageVo(page);
+        return new PageVO(page);
 
     }
 
     @Override
-    public List<AttrGroupWithAttrsVo> getListWithAttrs(Long catId) {
+    public List<AttrGroupWithAttrsVO> getListWithAttrs(Long catId) {
 
         List<AttrGroupEntity> attrGroupEntityList = this.list(new LambdaQueryWrapper<AttrGroupEntity>()
                 .eq(AttrGroupEntity::getCatId, catId));
 
         return attrGroupEntityList.stream().map(attrGroup -> {
 
-            AttrGroupWithAttrsVo attrGroupWithAttrsVo = new AttrGroupWithAttrsVo();
+            AttrGroupWithAttrsVO attrGroupWithAttrsVo = new AttrGroupWithAttrsVO();
             BeanUtils.copyProperties(attrGroup, attrGroupWithAttrsVo);
 
             List<Long> attrIds = attrAttrGroupRelationService.list(new LambdaQueryWrapper<AttrAttrGroupRelationEntity>()

@@ -1,6 +1,7 @@
 
 package com.likeghost.mall.product.pojo.vo;
 
+import com.likeghost.mall.product.pojo.bo.SaleAttrValue;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -12,7 +13,7 @@ import java.util.List;
  * @description
  */
 @Data
-public class Sku {
+public class SkuSaveVO {
 
     private List<SaleAttrValue> saleAttrs;
     private String skuName;
@@ -20,12 +21,20 @@ public class Sku {
     private String skuTitle;
     private String skuSubtitle;
     private List<Image> images;
-    private int fullCount;
+    private Integer fullCount;
     private BigDecimal discount;
-    private int countStatus;
+    private Integer countStatus;
     private BigDecimal fullPrice;
     private BigDecimal reducePrice;
-    private int priceStatus;
+    private Integer priceStatus;
     private List<String> memberPrice;
+
+
+    @Data
+    public class Image {
+
+        private Integer defaultImg;
+        private String imgUrl;
+    }
 
 }

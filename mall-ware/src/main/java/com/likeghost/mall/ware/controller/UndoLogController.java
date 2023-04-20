@@ -1,6 +1,6 @@
 package com.likeghost.mall.ware.controller;
 
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.ware.pojo.entity.UndoLogEntity;
 import com.likeghost.mall.ware.service.UndoLogService;
@@ -31,7 +31,7 @@ public class UndoLogController {
     @RequestMapping("/list")
     //@RequiresPermissions("ware:undolog:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageVo page = undoLogService.queryPage(params);
+        PageVO page = undoLogService.queryPage(params);
 
         return R.ok().put("page", page);
     }

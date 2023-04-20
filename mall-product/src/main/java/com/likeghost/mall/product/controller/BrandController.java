@@ -1,6 +1,6 @@
 package com.likeghost.mall.product.controller;
 
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.product.pojo.entity.BrandEntity;
 import com.likeghost.mall.product.service.BrandService;
@@ -33,7 +33,7 @@ public class BrandController {
     @GetMapping("/list")
     //@RequiresPermissions("product:brand:list")
     public R list(@RequestParam Map<String, Object> params) {
-        PageVo page = brandService.queryPage(params);
+        PageVO page = brandService.queryPage(params);
 
         return R.ok().put("page", page);
 
@@ -43,7 +43,7 @@ public class BrandController {
     @GetMapping("/list/{catId}")
     //@RequiresPermissions("product:brand:list")
     public R list(@RequestParam Map<String, Object> params, @PathVariable Long catId) {
-        PageVo page = brandService.queryPageByCatId(params, catId);
+        PageVO page = brandService.queryPageByCatId(params, catId);
 
         return R.ok().put("page", page);
 

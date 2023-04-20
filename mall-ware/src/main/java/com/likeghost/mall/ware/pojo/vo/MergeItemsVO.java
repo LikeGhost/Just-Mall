@@ -11,7 +11,7 @@ import java.util.List;
  * @description
  */
 @Data
-public class MergeItemsVo {
+public class MergeItemsVO {
     private Long purchaseId;
     private List<Long> items;
 }

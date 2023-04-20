@@ -1,6 +1,6 @@
 package com.likeghost.mall.member.controller;
 
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.member.entity.MemberCollectSpuEntity;
 import com.likeghost.mall.member.service.MemberCollectSpuService;
@@ -31,7 +31,7 @@ public class MemberCollectSpuController {
     @RequestMapping("/list")
     //@RequiresPermissions("member:membercollectspu:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageVo page = memberCollectSpuService.queryPage(params);
+        PageVO page = memberCollectSpuService.queryPage(params);
 
         return R.ok().put("page", page);
     }

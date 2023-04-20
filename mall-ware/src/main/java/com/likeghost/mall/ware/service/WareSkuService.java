@@ -1,9 +1,11 @@
 package com.likeghost.mall.ware.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
+import com.likeghost.mall.ware.pojo.dto.SkuStockDTO;
 import com.likeghost.mall.ware.pojo.entity.WareSkuEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,8 +17,10 @@ import java.util.Map;
  */
 public interface WareSkuService extends IService<WareSkuEntity> {
 
-    PageVo queryPage(Map<String, Object> params);
+    PageVO queryPage(Map<String, Object> params);
 
-    PageVo queryPageByConditions(Long skuId, Long wareId, Map<String, Object> params);
+    PageVO queryPageByConditions(Long skuId, Long wareId, Map<String, Object> params);
+
+    List<SkuStockDTO> getSkuStock(List<Long> skuIds);
 }
 

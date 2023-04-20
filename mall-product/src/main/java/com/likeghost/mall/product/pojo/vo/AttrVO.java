@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @description
  */
 @Data
-public class AttrVo implements Serializable {
+public class AttrVO implements Serializable {
 
     /**
      * 属性id

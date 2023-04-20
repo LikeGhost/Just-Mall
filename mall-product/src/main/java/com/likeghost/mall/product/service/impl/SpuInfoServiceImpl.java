@@ -4,13 +4,19 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.constant.ProductConstant;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.Query;
+import com.likeghost.common.utils.R;
+import com.likeghost.mall.product.feign.ElasticsearchSaveFeignService;
+import com.likeghost.mall.product.feign.WareSkuFeignService;
+import com.likeghost.mall.product.pojo.bo.SaleAttrValue;
 import com.likeghost.mall.product.pojo.dao.SpuInfoDao;
+import com.likeghost.mall.product.pojo.dto.ProductEsDTO;
+import com.likeghost.mall.product.pojo.dto.SkuStockDTO;
 import com.likeghost.mall.product.pojo.entity.*;
-import com.likeghost.mall.product.pojo.vo.BaseAttrValue;
-import com.likeghost.mall.product.pojo.vo.Image;
-import com.likeghost.mall.product.pojo.vo.SpuInfoSaveVo;
+import com.likeghost.mall.product.pojo.vo.SkuSaveVO;
+import com.likeghost.mall.product.pojo.vo.SpuInfoSaveVO;
 import com.likeghost.mall.product.service.*;
 import lombok.SneakyThrows;
 import org.apache.commons.lang.StringUtils;
@@ -19,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -39,8 +46,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
 
     @Autowired
     private ProductAttrValueService productAttrValueService;
-    @Autowired
-    private AttrService attrService;
+
     @Autowired
     private SkuInfoService skuInfoService;
     @Autowired
@@ -48,19 +54,32 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
     @Autowired
     private SkuSaleAttrValueService skuSaleAttrValueService;
 
+
+    @Autowired
+    private BrandService brandService;
+
+    @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
+    private WareSkuFeignService wareSkuFeignService;
+
+    @Autowired
+    private ElasticsearchSaveFeignService elasticsearchSaveFeignService;
+
     @Override
-    public PageVo queryPage(Map<String, Object> params) {
+    public PageVO queryPage(Map<String, Object> params) {
         IPage<SpuInfoEntity> page = this.page(
                 new Query<SpuInfoEntity>().getPage(params),
                 new QueryWrapper<SpuInfoEntity>()
         );
 
-        return new PageVo(page);
+        return new PageVO(page);
     }
 
     @Override
     @Transactional
-    public boolean save(SpuInfoSaveVo spuInfoSaveVo) {
+    public boolean save(SpuInfoSaveVO spuInfoSaveVo) {
 
 
         //保存数据至pms_spu_info
@@ -78,7 +97,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
 
         //保存数据至pms_product_attr_value
         // TODO: 2023/4/11 性能应该需要优化
-        List<BaseAttrValue> baseAttrs = spuInfoSaveVo.getBaseAttrs();
+        List<SpuInfoSaveVO.BaseAttrValue> baseAttrs = spuInfoSaveVo.getBaseAttrs();
 
         List<ProductAttrValueEntity> productAttrValues = baseAttrs.stream().map(item -> {
             ProductAttrValueEntity productAttrValue = new ProductAttrValueEntity();
@@ -99,7 +118,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
             BeanUtils.copyProperties(spuInfo, skuInfo);
             skuInfo.setSpuId(spuInfo.getId());
             skuInfo.setSaleCount(0L);
-            for (Image image : sku.getImages()) {
+            for (SkuSaveVO.Image image : sku.getImages()) {
                 if (image.getDefaultImg() == 1) {
                     skuInfo.setSkuDefaultImg(image.getImgUrl());
                 }
@@ -137,7 +156,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
 
     @SneakyThrows
     @Override
-    public PageVo queryPageByConditions(Long brandId, Long catId, Integer publishStatus, Map<String, Object> params) {
+    public PageVO queryPageByConditions(Long brandId, Long catId, Integer publishStatus, Map<String, Object> params) {
         LambdaQueryWrapper<SpuInfoEntity> queryWrapper = new LambdaQueryWrapper<>();
 
 
@@ -164,8 +183,75 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
                 queryWrapper
         );
 
-        return new PageVo(page);
+        return new PageVO(page);
 
+    }
+
+    @Override
+    public boolean putSpu(Long spuId) {
+
+        List<SkuInfoEntity> skus = skuInfoService.list(new LambdaQueryWrapper<SkuInfoEntity>()
+                .eq(SkuInfoEntity::getSpuId, spuId));
+
+        if (skus != null && !skus.isEmpty()) {
+            Map<Long, SkuInfoEntity> skuMap = skus.stream().collect(Collectors.toMap(SkuInfoEntity::getSkuId, sku -> sku));
+
+            List<SkuSaleAttrValueEntity> skuSaleAttrValues = skuSaleAttrValueService.list(new LambdaQueryWrapper<SkuSaleAttrValueEntity>().in(SkuSaleAttrValueEntity::getSkuId, skuMap.keySet()));
+
+            //将属性根据skuId分组聚合
+            Map<Long, List<SkuSaleAttrValueEntity>> skuSaleValueMap = skuSaleAttrValues.stream().collect(Collectors.groupingBy(SkuSaleAttrValueEntity::getSkuId));
+
+
+            SpuInfoEntity spu = this.getById(spuId);
+
+            BrandEntity brand = brandService.getById(spu.getBrandId());
+            CategoryEntity category = categoryService.getById(spu.getCatId());
+
+
+            List<SkuStockDTO> skuStocks = wareSkuFeignService.getSkuStock(new ArrayList<>(skuMap.keySet()));
+
+            Map<Long, Boolean> stuStockMap = skuStocks.stream().collect(Collectors.toMap(SkuStockDTO::getSkuId, stock -> stock.getStock() > 0));
+
+            //构建es数据模型
+            List<ProductEsDTO> products = skus.stream().map(sku -> {
+                ProductEsDTO productEsDto = new ProductEsDTO();
+                BeanUtils.copyProperties(sku, productEsDto);
+
+                List<SaleAttrValue> saleAttrValues = skuSaleValueMap.get(sku.getSkuId()).stream().map(skuSaleValue -> {
+                    SaleAttrValue saleAttrValue = new SaleAttrValue();
+                    BeanUtils.copyProperties(skuSaleValue, saleAttrValue);
+                    return saleAttrValue;
+                }).collect(Collectors.toList());
+
+                productEsDto.setAttrs(saleAttrValues);
+                productEsDto.setSkuImg(sku.getSkuDefaultImg());
+                productEsDto.setSkuPrice(sku.getPrice());
+                productEsDto.setBrandName(brand.getName());
+                productEsDto.setBrandImg(brand.getLogo());
+                productEsDto.setCategoryName(category.getName());
+                productEsDto.setHotScore(0L);
+                Boolean hasStock = stuStockMap.get(sku.getSkuId());
+                productEsDto.setHasStock(hasStock != null && hasStock);
+
+                return productEsDto;
+            }).collect(Collectors.toList());
+
+            R r = elasticsearchSaveFeignService.saveProduct(products);
+            if (r.getCode() == 0) {
+
+                spu.setPublishStatus(ProductConstant.PublishStatus.ON_SALE.getCode());
+                this.updateById(spu);
+            } else {
+
+            }
+
+
+            return false;
+
+        }
+
+
+        return false;
     }
 
 }

@@ -1,6 +1,6 @@
 package com.likeghost.mall.product.controller;
 
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.product.pojo.entity.ProductAttrValueEntity;
 import com.likeghost.mall.product.service.ProductAttrValueService;
@@ -31,7 +31,7 @@ public class ProductAttrValueController {
     @RequestMapping("/list")
     //@RequiresPermissions("product:productattrvalue:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageVo page = productAttrValueService.queryPage(params);
+        PageVO page = productAttrValueService.queryPage(params);
 
         return R.ok().put("page", page);
     }

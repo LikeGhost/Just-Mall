@@ -6,12 +6,12 @@ import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.likeghost.common.constant.ProductConstant;
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.Query;
 import com.likeghost.mall.product.pojo.dao.AttrDao;
 import com.likeghost.mall.product.pojo.dao.AttrGroupDao;
 import com.likeghost.mall.product.pojo.entity.*;
-import com.likeghost.mall.product.pojo.vo.AttrVo;
+import com.likeghost.mall.product.pojo.vo.AttrVO;
 import com.likeghost.mall.product.service.AttrAttrGroupRelationService;
 import com.likeghost.mall.product.service.AttrService;
 import com.likeghost.mall.product.service.CategoryService;
@@ -52,17 +52,17 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
     private ProductAttrValueService productAttrValueService;
 
     @Override
-    public PageVo queryPageByCatId(Map<String, Object> params) {
+    public PageVO queryPageByCatId(Map<String, Object> params) {
         IPage<AttrEntity> page = this.page(
                 new Query<AttrEntity>().getPage(params),
                 new QueryWrapper<AttrEntity>()
         );
 
-        return new PageVo(page);
+        return new PageVO(page);
     }
 
     @Override
-    public PageVo queryPageByCatId(Map<String, Object> params, Long catId) {
+    public PageVO queryPageByCatId(Map<String, Object> params, Long catId) {
 
         String key = (String) params.get("key");
 
@@ -81,8 +81,8 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
                 queryWrapper
         );
 
-        List<AttrVo> attrVoList = page.getRecords().stream().map((attrEntity -> {
-            AttrVo attrVo = new AttrVo();
+        List<AttrVO> attrList = page.getRecords().stream().map((attrEntity -> {
+            AttrVO attrVo = new AttrVO();
             BeanUtils.copyProperties(attrEntity, attrVo);
             AttrAttrGroupRelationEntity relation = attrAttrGroupRelationService.getOne(new LambdaQueryWrapper<AttrAttrGroupRelationEntity>()
                     .eq(AttrAttrGroupRelationEntity::getAttrId, attrEntity.getAttrId()));
@@ -97,13 +97,13 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         })).collect(Collectors.toList());
 
 
-        PageVo pageVo = new PageVo(page);
-        pageVo.setList(attrVoList);
+        PageVO pageVo = new PageVO(page);
+        pageVo.setList(attrList);
         return pageVo;
     }
 
     @Override
-    public PageVo queryPageByAttrTypeAndCatId(Map<String, Object> params, String attrType, Long catId) {
+    public PageVO queryPageByAttrTypeAndCatId(Map<String, Object> params, String attrType, Long catId) {
 
 //        String key= (String) params.get("key");
 
@@ -143,7 +143,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
 //        })).collect(Collectors.toList());
 
 
-        PageVo pageVo = new PageVo(page);
+        PageVO pageVo = new PageVO(page);
 //        pageVo.setList(attrVoList);
         return pageVo;
     }
@@ -174,7 +174,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
 
     @Override
     @Transactional
-    public Boolean saveOrUpdate(AttrVo attr) {
+    public Boolean saveOrUpdate(AttrVO attr) {
         boolean result = true;
         AttrEntity attrEntity = new AttrEntity();
         BeanUtils.copyProperties(attr, attrEntity);
@@ -213,12 +213,12 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
 //    }
 
     @Override
-    public AttrVo getAttrInfo(Long attrId) {
+    public AttrVO getAttrInfo(Long attrId) {
 
         AttrEntity attrEntity = this.getById(attrId);
         AttrAttrGroupRelationEntity relation = attrAttrGroupRelationService.getOne(new LambdaQueryWrapper<AttrAttrGroupRelationEntity>()
                 .eq(AttrAttrGroupRelationEntity::getAttrId, attrId));
-        AttrVo attrVo = new AttrVo();
+        AttrVO attrVo = new AttrVO();
         if (relation != null) {
             BeanUtils.copyProperties(relation, attrVo);
 

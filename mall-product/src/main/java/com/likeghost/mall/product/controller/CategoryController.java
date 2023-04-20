@@ -1,6 +1,6 @@
 package com.likeghost.mall.product.controller;
 
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.product.pojo.entity.CategoryEntity;
 import com.likeghost.mall.product.service.CategoryService;
@@ -35,7 +35,7 @@ public class CategoryController {
     @GetMapping("/list")
     //@RequiresPermissions("product:category:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageVo page = categoryService.queryPage(params);
+        PageVO page = categoryService.queryPage(params);
 
         return R.ok().put("page", page);
     }

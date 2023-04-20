@@ -3,7 +3,7 @@ package com.likeghost.mall.product.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.Query;
 import com.likeghost.mall.product.pojo.dao.BrandDao;
 import com.likeghost.mall.product.pojo.dao.CategoryBrandRelationDao;
@@ -27,7 +27,7 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
     CategoryDao categoryDao;
 
     @Override
-    public PageVo queryPageByBrandId(Map<String, Object> params) {
+    public PageVO queryPageByBrandId(Map<String, Object> params) {
         LambdaQueryWrapper<CategoryBrandRelationEntity> queryWrapper = new LambdaQueryWrapper<>();
 
 
@@ -36,7 +36,7 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
                 queryWrapper
         );
 
-        return new PageVo(page);
+        return new PageVO(page);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
     }
 
     @Override
-    public PageVo queryPageByBrandId(Map<String, Object> params, Long brandId) {
+    public PageVO queryPageByBrandId(Map<String, Object> params, Long brandId) {
 
 
         LambdaQueryWrapper<CategoryBrandRelationEntity> queryWrapper = new LambdaQueryWrapper<CategoryBrandRelationEntity>()
@@ -60,12 +60,12 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
                 queryWrapper
         );
 
-        return new PageVo(page);
+        return new PageVO(page);
 
     }
 
     @Override
-    public PageVo queryPageByCatId(Map<String, Object> params, Long catId) {
+    public PageVO queryPageByCatId(Map<String, Object> params, Long catId) {
         LambdaQueryWrapper<CategoryBrandRelationEntity> queryWrapper = new LambdaQueryWrapper<>();
         if (catId != 0) {
             queryWrapper.eq(CategoryBrandRelationEntity::getCatId, catId);
@@ -77,7 +77,7 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
                 queryWrapper
         );
 
-        return new PageVo(page);
+        return new PageVO(page);
     }
 
 }

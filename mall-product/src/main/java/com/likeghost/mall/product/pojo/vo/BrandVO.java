@@ -18,7 +18,7 @@ import java.util.Map;
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
-public class BrandVo {
+public class BrandVO {
     /**
      * 品牌id
      */

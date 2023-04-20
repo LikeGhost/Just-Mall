@@ -1,10 +1,10 @@
 package com.likeghost.mall.ware.controller;
 
-import com.likeghost.common.pojo.vo.PageVo;
+import com.likeghost.common.pojo.vo.PageVO;
 import com.likeghost.common.utils.R;
 import com.likeghost.mall.ware.pojo.entity.PurchaseEntity;
-import com.likeghost.mall.ware.pojo.vo.CompletePurchasingVo;
-import com.likeghost.mall.ware.pojo.vo.MergeItemsVo;
+import com.likeghost.mall.ware.pojo.vo.CompletePurchasingVO;
+import com.likeghost.mall.ware.pojo.vo.MergeItemsVO;
 import com.likeghost.mall.ware.service.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -34,20 +34,20 @@ public class PurchaseController {
     @GetMapping("/list")
     //@RequiresPermissions("ware:purchase:list")
     public R list(@RequestParam Map<String, Object> params, Integer status) {
-        PageVo page = purchaseService.queryPageByConditions(params, status);
+        PageVO page = purchaseService.queryPageByConditions(params, status);
 
         return R.ok().put("page", page);
     }
 
     @GetMapping("/unreceived/list")
     public R unreceivedList(@RequestParam Map<String, Object> params) {
-        PageVo page = purchaseService.queryUnreceivedPage(params);
+        PageVO page = purchaseService.queryUnreceivedPage(params);
 
         return R.ok().put("page", page);
     }
 
     @PostMapping("/merge")
-    public R mergeItems(@RequestBody MergeItemsVo mergeItemsVo) {
+    public R mergeItems(@RequestBody MergeItemsVO mergeItemsVo) {
 
         purchaseService.mergeItems(mergeItemsVo);
 
@@ -62,7 +62,7 @@ public class PurchaseController {
     }
 
     @PostMapping("/complete")
-    public R completePurchasing(@RequestBody CompletePurchasingVo completePurchasingVo) {
+    public R completePurchasing(@RequestBody CompletePurchasingVO completePurchasingVo) {
         purchaseService.completePurchasing(completePurchasingVo);
 
         return R.ok();
